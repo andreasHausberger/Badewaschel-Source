@@ -12,6 +12,7 @@ import MapKit
 struct PoolListView: View {
     @ObservedObject var viewModel = PoolModel()
     @State var showingDetail = false
+    @State var showingMap = false
     var body: some View {
         NavigationView {
             List(viewModel.pools, id: \.id) { pool in
@@ -19,25 +20,31 @@ struct PoolListView: View {
                     PoolRow(pool: pool)
                 }
             }
-            .navigationBarTitle(Text("BadeWaschel"))
-            .navigationBarItems(leading: Button(action: {
+            .navigationBarTitle(Text("Badewaschel"))
+            .navigationBarItems(
+                leading: Button(action: {
                 self.showingDetail.toggle()
             }) {
                 Image.init(systemName: "gear")
                     .font(.title)
             }.sheet(isPresented: $showingDetail) {
+                NavigationView {
                     PoolSettingsView(model: self.viewModel)
+                    .navigationBarTitle("Einstellungen")
+                }
             },
             trailing:
-                NavigationLink(
-                    destination:
-                        MapView(latitude: 48.20, longitude: 16.37, name: "", allLocations: getAllLocations(), spanConstant: 0.25).navigationBarTitle("Alle Schwimmbäder")
-                ) {
-                    Image.init(systemName: "map")
-                        .font(.title)
+                Button(action: {
+                    self.showingMap.toggle()
+                }) {
+                    Image(systemName: "map").font(.title)
+                }.sheet(isPresented: $showingMap) {
+                    NavigationView {
+                        MapView(latitude: 48.20, longitude: 16.37, name: "", allLocations: self.getAllLocations(), spanConstant: 0.25)
+                        .navigationBarTitle("Alle Schwimmbäder")
+                    }
                 }
             )
-            
             Text("Wähle ein Schwimmbad aus der Liste!")
         }
     }

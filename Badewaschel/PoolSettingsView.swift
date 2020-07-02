@@ -20,8 +20,6 @@ struct PoolSettingsView: View {
     var body: some View {
         HStack {
             VStack {
-                Spacer()
-                Text("Einstellungen")
                 Form {
                     Section(header: Text("Sortierung")) {
                         Picker("Nach", selection: $sorting) {
