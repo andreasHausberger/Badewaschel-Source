@@ -16,11 +16,11 @@ struct PoolListView: View {
     var body: some View {
         NavigationView {
             List(viewModel.pools, id: \.id) { pool in
-                NavigationLink(destination: PoolDetailView(pool: pool)) {
+                NavigationLink(destination: PoolDetailView(pool: pool, model: self.viewModel, isFavorite: self.viewModel.isFavorite(id: pool.id))) {
                     PoolRow(pool: pool)
                 }
             }
-            .navigationBarTitle(Text("Badewaschel"))
+            .navigationBarTitle(Text("BadeWaschel"))
             .navigationBarItems(
                 leading: Button(action: {
                 self.showingDetail.toggle()

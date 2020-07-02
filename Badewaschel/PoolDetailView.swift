@@ -10,7 +10,8 @@ import SwiftUI
 
 struct PoolDetailView: View {
     var pool: Pool?
-    @State var isFavorite = false
+    var model: PoolModel
+    @State var isFavorite: Bool
     var body: some View {
             Form {
                 Section(header: Text("Auslastung")) {
@@ -43,14 +44,18 @@ struct PoolDetailView: View {
             }.navigationBarTitle(pool?.properties.name ?? "Pool Name")
             
             .navigationBarItems(trailing: Button(action: {
-                self.isFavorite.toggle()
+                if let actualPool = self.pool {
+                    self.model.setFavorite(id: actualPool.id)
+                    self.isFavorite.toggle()
+
+                    
+                }
             }, label: {
-                return Image(systemName: self.isFavorite ? "heart.fill" : "heart")
+                return Image(systemName: self.isFavorite ? "heart.fill" : "heart").font(.title)
             }))
     }
     
     func openLink(link: String) {
-        
         if let url = URL(string: link) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
@@ -126,14 +131,12 @@ struct InfoView: View {
             Text(content)
         }
     }
-    
-    
 }
 
 
 struct PoolDetailView_Previews: PreviewProvider {
     static let examplePool = PoolListView().viewModel.pools[0]
     static var previews: some View {
-        PoolDetailView(pool: nil)
+        PoolDetailView(pool: nil, model: PoolModel(), isFavorite: true)
     }
 }

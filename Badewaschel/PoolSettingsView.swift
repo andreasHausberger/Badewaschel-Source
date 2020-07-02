@@ -17,6 +17,10 @@ struct PoolSettingsView: View {
         }
     }
     @ObservedObject var model: PoolModel
+    
+    var favoritePools: [Pool] {
+        self.model.getFavorites()
+    }
     var body: some View {
         HStack {
             VStack {
@@ -33,17 +37,22 @@ struct PoolSettingsView: View {
                     }
                     
                     Section(header: Text("Meine Favoriten")) {
-                        List {
-                            Text("Pool")
-                        }
+                        List(self.favoritePools) { pool in
+                            NavigationLink(destination: PoolDetailView(pool: pool, model: self.model, isFavorite: self.model.isFavorite(id: pool.id))) {
+                                PoolRow(pool: pool)
+                            }                        }
                     }
                     
                     Section(header: Text("Ortung")) {
                         Text("Die Ortungsdienste sind derzeit \(self.model.locationIsAvailable ? "aktiviert" : "deaktiviert")")
                     }
+                    
+                    Section(header: Text("Letzte Aktualisierung")) {
+                        Text("Zeitpunkt der letzten Aktualisierung: \(self.model.lastUpdate)")
+                    }
                     HStack {
                         Spacer()
-                        Button("Speichern") {
+                        Button("Speichern & Anwenden") {
                             self.model.sortPools(sorting: self.sorting)
                             self.presentationMode.wrappedValue.dismiss()
                         }

@@ -24,9 +24,9 @@ struct CRSProperties: Codable {
 }
 
 // MARK: - Pool
-struct Pool: Codable, Identifiable {
+public struct Pool: Codable, Identifiable {
     let type: String?
-    let id: String
+    public let id: String
     let geometry: Geometry
     let geometryName: String
     let properties: FeatureProperties

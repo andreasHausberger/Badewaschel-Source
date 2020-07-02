@@ -14,8 +14,11 @@ public class PoolModel: ObservableObject {
     public var sorting: Sorting = .Name 
     private let networkManager = NetworkManager.shared()
     private var locationManager = LocationManager()
+    private var dataManager = DataManager()
     
     @Published var pools = [Pool]()
+    
+    @Published var lastUpdate = ""
     
     public var location: CLLocation? {
         self.locationManager.userLocation
@@ -25,14 +28,27 @@ public class PoolModel: ObservableObject {
         self.locationManager.locationIsAvailable
     }
     
+    @Published var favorites = [String]()
+    
     init() {
         self.networkManager.getAllPools(completion: self.getPoolData(_:))
+        self.favorites = self.dataManager.getFavoriteIDs()
     }
+    
+    //MARK: Pool Data & Sorting
     
     func getPoolData(_ response:PoolResponse) {
         DispatchQueue.main.async {
             self.pools = response.features
             self.sortPools(sorting: .Name)
+            let lastUpdateStrings = self.pools.map( { $0.properties.timestampModifiedFormat })
+            
+            for string in lastUpdateStrings {
+                if let actualString = string {
+                    self.lastUpdate = actualString
+                    return
+                }
+            }
         }
     }
     
@@ -76,9 +92,32 @@ public class PoolModel: ObservableObject {
         }
         return false
     }
+    
+    //MARK: Favorites
+    
+    public func getFavorites() -> [Pool] {
+        let favoriteIds = self.dataManager.getFavoriteIDs()
+        
+        let filteredPools = self.pools.filter( { favoriteIds.contains($0.id) })
+        
+        return filteredPools
+    }
+    
+    public func setFavorite(id: String) {
+        if !self.favorites.contains(id) {
+            self.favorites.append(id)
+        }
+        else {
+            self.favorites = self.favorites.filter ( { $0 != id })
+        }
+        self.dataManager.setFavorite(id: id)
+        
+    }
+    
+    public func isFavorite(id: String) -> Bool {
+        return self.favorites.contains(id)
+    }
 }
-
-
 
 public enum Sorting {
     case Favorites;
