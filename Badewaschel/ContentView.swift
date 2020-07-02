@@ -8,14 +8,30 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct PoolListView: View {
+    @ObservedObject var viewModel = PoolModel()
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            List(viewModel.pools, id: \.id) { pool in
+                PoolRow(pool: pool)
+            }
+            .navigationBarTitle(Text("BadeWaschel"))
+            .navigationBarItems(trailing: Button("Options", action: {
+                
+            }))
+        }
+    }
+}
+
+struct PoolRow: View {
+    var pool: Pool
+    var body: some View {
+        Text(pool.properties.name)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        PoolListView()
     }
 }
