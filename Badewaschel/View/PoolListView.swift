@@ -17,32 +17,42 @@ struct PoolListView: View {
         NavigationView {
             List(viewModel.pools, id: \.id) { pool in
                 NavigationLink(destination: PoolDetailView(pool: pool, model: self.viewModel, isFavorite: self.viewModel.isFavorite(id: pool.id))) {
-                    PoolRow(pool: pool)
+                    PoolRow(pool: pool, isFavorite: self.viewModel.isFavorite(id: pool.id))
                 }
             }
             .navigationBarTitle(Text("BadeWaschel"))
             .navigationBarItems(
                 leading: Button(action: {
-                self.showingDetail.toggle()
-            }) {
-                Image.init(systemName: "gear")
-                    .font(.title)
-            }.sheet(isPresented: $showingDetail) {
-                NavigationView {
-                    PoolSettingsView(model: self.viewModel)
-                    .navigationBarTitle("Einstellungen")
-                }
-            },
-            trailing:
+                    self.showingDetail.toggle()
+                }) {
+                    Image.init(systemName: "gear")
+                        .font(.title)
+                }.sheet(isPresented: $showingDetail) {
+                    NavigationView {
+                        PoolSettingsView(model: self.viewModel)
+                            .navigationBarTitle("Einstellungen")
+                    }
+                },
+                trailing:
                 Button(action: {
                     self.showingMap.toggle()
                 }) {
                     Image(systemName: "map").font(.title)
                 }.sheet(isPresented: $showingMap) {
-                    NavigationView {
-                        MapView(latitude: 48.20, longitude: 16.37, name: "", allLocations: self.getAllLocations(), spanConstant: 0.25)
-                        .navigationBarTitle("Alle Schwimmbäder")
+                    if self.idiom == .pad {
+                        VStack {
+                            Spacer()
+                            Text("Alle Schwimmbäder").font(.largeTitle)
+                            MapView(latitude: 48.20, longitude: 16.37, name: "", allLocations: self.getAllLocations(), spanConstant: 0.25)
+                        }
                     }
+                    else {
+                        NavigationView {
+                            MapView(latitude: 48.20, longitude: 16.37, name: "", allLocations: self.getAllLocations(), spanConstant: 0.25)
+                                .navigationBarTitle("Alle Schwimmbäder")
+                        }
+                    }
+                    
                 }
             )
             Text("Wähle ein Schwimmbad aus der Liste!")
@@ -64,9 +74,14 @@ struct PoolListView: View {
 
 struct PoolRow: View {
     var pool: Pool
+    var isFavorite: Bool?
     var body: some View {
         HStack {
+            
             Text(pool.properties.name).lineLimit(1)
+            if self.isFavorite != nil && self.isFavorite! {
+                Text("❤️")
+            }
             Spacer()
             AuslastungsAmpel(auslastungInt: pool.properties.auslastungAmpelKategorie0)
                 .frame(width: 32, height: 32, alignment: .trailing)

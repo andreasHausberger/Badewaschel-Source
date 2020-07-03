@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PoolSettingsView: View {
     @Environment(\.presentationMode) var presentationMode
-
+    
     @State var sorting: Sorting = .Name {
         didSet {
             self.model.sorting = sorting
@@ -26,14 +26,27 @@ struct PoolSettingsView: View {
             VStack {
                 Form {
                     Section(header: Text("Sortierung")) {
-                        Picker("Nach", selection: $sorting) {
-                            Text("Name").tag(Sorting.Name)
-                            Text("Favoriten").tag(Sorting.Favorites)
-                            if (self.model.locationIsAvailable) {
-                                Text("Nähe").tag(Sorting.Vicinity)
+                        if self.idiom == .pad {
+                            Picker("Nach", selection: $sorting) {
+                                Text("Name").tag(Sorting.Name)
+                                Text("Favoriten").tag(Sorting.Favorites)
+                                if (self.model.locationIsAvailable) {
+                                    Text("Nähe").tag(Sorting.Vicinity)
+                                }
+                                Text("Auslastung").tag(Sorting.Capacity)
                             }
-                            Text("Auslastung").tag(Sorting.Capacity)
-                        }.pickerStyle(SegmentedPickerStyle())
+                        }
+                        else {
+                            Picker("Nach", selection: $sorting) {
+                                Text("Name").tag(Sorting.Name)
+                                Text("Favoriten").tag(Sorting.Favorites)
+                                if (self.model.locationIsAvailable) {
+                                    Text("Nähe").tag(Sorting.Vicinity)
+                                }
+                                Text("Auslastung").tag(Sorting.Capacity)
+                            }.pickerStyle(SegmentedPickerStyle())
+                        }
+                        
                     }
                     
                     Section(header: Text("Meine Favoriten")) {

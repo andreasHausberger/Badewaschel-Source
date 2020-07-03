@@ -55,7 +55,7 @@ public class PoolModel: ObservableObject {
     public func sortPools(sorting: Sorting) {
         switch sorting {
         case .Favorites:
-            print("Not yet implemented!")
+            self.pools.sort(by: { self.sortPoolsByFavorites(pool1: $0, pool2: $1) })
         case .Vicinity:
             self.pools.sort(by: { self.sortPoolsByVicinity(pool1: $0, pool2: $1) })
         case .Capacity:
@@ -91,6 +91,16 @@ public class PoolModel: ObservableObject {
             return distance1 < distance2
         }
         return false
+    }
+    
+    private func sortPoolsByFavorites(pool1: Pool, pool2: Pool) -> Bool {
+        let pool1isFavorite = self.favorites.contains(pool1.id)
+        let pool2isFavorite = self.favorites.contains(pool2.id)
+        
+        if pool1isFavorite && !pool2isFavorite { return true }
+        if !pool1isFavorite && pool2isFavorite { return true }
+        
+        return pool1.properties.name < pool2.properties.name
     }
     
     //MARK: Favorites
