@@ -26,17 +26,7 @@ struct PoolSettingsView: View {
             VStack {
                 Form {
                     Section(header: Text("Sortierung")) {
-                        if self.idiom == .pad {
-                            Picker("Nach", selection: $sorting) {
-                                Text("Name").tag(Sorting.Name)
-                                Text("Favoriten").tag(Sorting.Favorites)
-                                if (self.model.locationIsAvailable) {
-                                    Text("Nähe").tag(Sorting.Vicinity)
-                                }
-                                Text("Auslastung").tag(Sorting.Capacity)
-                            }
-                        }
-                        else {
+                        
                             Picker("Nach", selection: $sorting) {
                                 Text("Name").tag(Sorting.Name)
                                 Text("Favoriten").tag(Sorting.Favorites)
@@ -45,15 +35,19 @@ struct PoolSettingsView: View {
                                 }
                                 Text("Auslastung").tag(Sorting.Capacity)
                             }.pickerStyle(SegmentedPickerStyle())
-                        }
-                        
                     }
                     
                     Section(header: Text("Meine Favoriten")) {
                         List(self.favoritePools) { pool in
-                            NavigationLink(destination: PoolDetailView(pool: pool, model: self.model, isFavorite: self.model.isFavorite(id: pool.id))) {
+                            if self.idiom == .pad {
                                 PoolRow(pool: pool)
-                            }                        }
+                            }
+                            else {
+                                NavigationLink(destination: PoolDetailView(pool: pool, model: self.model, isFavorite: self.model.isFavorite(id: pool.id))) {
+                                    PoolRow(pool: pool)
+                                }
+                            }
+                        }
                     }
                     
                     Section(header: Text("Ortung")) {
@@ -63,6 +57,15 @@ struct PoolSettingsView: View {
                     Section(header: Text("Letzte Aktualisierung")) {
                         Text("Zeitpunkt der letzten Aktualisierung: \(self.model.lastUpdate)")
                     }
+                    
+                    Section(header: Text("Quellen")) {
+                        Text("Datenquelle: Stadt Wien – https://data.wien.gv.at").onTapGesture {
+                            if let url = URL(string: "https://data.wien.gv.at") {
+                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                            }
+                        }
+                        Text("Die Daten werden aus der oben genannten Quelle entnommen und unterliegen keinen inhaltlichen Änderungen, die durch die App vorgenommen wurden.")
+                        }
                     HStack {
                         Spacer()
                         Button("Speichern & Anwenden") {

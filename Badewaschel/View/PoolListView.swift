@@ -28,10 +28,20 @@ struct PoolListView: View {
                     Image.init(systemName: "gear")
                         .font(.title)
                 }.sheet(isPresented: $showingDetail) {
-                    NavigationView {
-                        PoolSettingsView(model: self.viewModel)
-                            .navigationBarTitle("Einstellungen")
+                    if self.idiom == .pad {
+                        VStack {
+                            Spacer()
+                            Text("Einstellungen").font(.largeTitle)
+                            PoolSettingsView(model: self.viewModel)
+                        }
                     }
+                    else {
+                        NavigationView {
+                            PoolSettingsView(model: self.viewModel)
+                                .navigationBarTitle("Einstellungen")
+                        }
+                    }
+                    
                 },
                 trailing:
                 Button(action: {
@@ -52,7 +62,6 @@ struct PoolListView: View {
                                 .navigationBarTitle("Alle Schwimmbäder")
                         }
                     }
-                    
                 }
             )
             Text("Wähle ein Schwimmbad aus der Liste!")

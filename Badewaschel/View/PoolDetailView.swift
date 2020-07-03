@@ -26,7 +26,9 @@ struct PoolDetailView: View {
                     List {
                         InfoView(name: "Name", content: pool?.properties.name ?? "PoolName")
                         InfoView(name: "Adresse", content: pool?.properties.adresse ?? "Addresse")
-                        InfoView(name: "Link", content: pool?.properties.weblink1 ?? "Link")
+                        InfoView(name: "Link", content: pool?.properties.weblink1 ?? "Link").onTapGesture {
+                            self.openLink(link: self.pool?.properties.weblink1 ?? "")
+                        }
                         InfoView(name: "Bezirk", content: pool?.properties.bezirk.description ?? "0")
                     }
                 }
