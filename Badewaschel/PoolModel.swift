@@ -30,6 +30,8 @@ public class PoolModel: ObservableObject {
     
     @Published var favorites = [String]()
     
+    @Published var options: UserOptions?
+    
     init() {
         self.networkManager.getAllPools(completion: self.getPoolData(_:))
         self.favorites = self.dataManager.getFavoriteIDs()
@@ -127,6 +129,16 @@ public class PoolModel: ObservableObject {
     public func isFavorite(id: String) -> Bool {
         return self.favorites.contains(id)
     }
+    
+    //MARK: Options
+    
+    public func getOptions() {
+        self.options = self.dataManager.getUserOptions()
+    }
+    
+    public func setOptions(options: UserOptions) {
+        self.dataManager.setUserOptions(options: options)
+    }
 }
 
 public enum Sorting {
@@ -134,4 +146,9 @@ public enum Sorting {
     case Vicinity;
     case Capacity;
     case Name;
+}
+
+public struct UserOptions {
+    var sorting: Sorting
+    var shouldDisplayCapacityLabel: Bool
 }

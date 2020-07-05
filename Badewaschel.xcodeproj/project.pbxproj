@@ -83,7 +83,7 @@
 				E12DBD5E24A60528009BC4C7 /* SceneDelegate.swift */,
 				E1F1B5AC24AF1BD200438918 /* View */,
 				E1FBA22824A8C0180075D3C3 /* Supporting */,
-				E1FBA22724A8C00B0075D3C3 /* Network */,
+				E1FBA22724A8C00B0075D3C3 /* Manager */,
 				E1187A4A24A79E860081BB28 /* PoolModel.swift */,
 				E12DBD7524A60612009BC4C7 /* PoolResponse.swift */,
 			);
@@ -117,14 +117,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		E1FBA22724A8C00B0075D3C3 /* Network */ = {
+		E1FBA22724A8C00B0075D3C3 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
 				E12DBD7324A6053F009BC4C7 /* NetworkManager.swift */,
 				E1F1B5A824ADCA2900438918 /* LocationManager.swift */,
 				E1F1B5AA24ADDB3400438918 /* DataManager.swift */,
 			);
-			path = Network;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		E1FBA22824A8C0180075D3C3 /* Supporting */ = {

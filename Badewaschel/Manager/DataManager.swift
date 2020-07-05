@@ -13,6 +13,9 @@ class DataManager: ObservableObject {
     @Published var favorites = [String]()
     
     private final let favoritesKey = "favorites"
+    private final let optionsKey = "options"
+    
+    //MARK: Favorites
     
     func getFavoriteIDs() -> [String] {
         if let favorites = UserDefaults.standard.array(forKey: self.favoritesKey) as? [String] {
@@ -33,14 +36,27 @@ class DataManager: ObservableObject {
                 NSLog("Removed Pool with id \(id) from favorites")
             }
             UserDefaults.standard.set(existingFavorites, forKey: self.favoritesKey)
-
         }
         else {
             NSLog("Created new favorites array")
             let favorites = [id]
             UserDefaults.standard.set(favorites, forKey: self.favoritesKey)
         }
-        
         self.favorites = UserDefaults.standard.array(forKey: self.favoritesKey) as! [String]
+    }
+    
+    //MARK: UserOptions
+    
+    func setUserOptions(options: UserOptions) {
+        UserDefaults.standard.set(options, forKey: self.optionsKey)
+        NSLog("Saved / updated UserOptions: \(options)")
+    }
+    
+    func getUserOptions() -> UserOptions {
+        var options = UserOptions(sorting: .Name, shouldDisplayCapacityLabel: false)
+        if let existingOptions = UserDefaults.standard.object(forKey: self.optionsKey) as? UserOptions {
+            options = existingOptions
+        }
+        return options
     }
 }
