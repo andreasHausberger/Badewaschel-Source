@@ -13,7 +13,8 @@ class DataManager: ObservableObject {
     @Published var favorites = [String]()
     
     private final let favoritesKey = "favorites"
-    private final let optionsKey = "options"
+    private final let sortingOptionsKey = "sortingOptions"
+    private final let displayKey = "displayOptions"
     
     //MARK: Favorites
     
@@ -48,14 +49,17 @@ class DataManager: ObservableObject {
     //MARK: UserOptions
     
     func setUserOptions(options: UserOptions) {
-        UserDefaults.standard.set(options, forKey: self.optionsKey)
-        NSLog("Saved / updated UserOptions: \(options)")
+        
+        UserDefaults.standard.set(options.shouldDisplayCapacityLabel, forKey: self.displayKey)
+        UserDefaults.standard.set(options.sorting.rawValue, forKey: self.sortingOptionsKey)
     }
     
     func getUserOptions() -> UserOptions {
-        var options = UserOptions(sorting: .Name, shouldDisplayCapacityLabel: false)
-        if let existingOptions = UserDefaults.standard.object(forKey: self.optionsKey) as? UserOptions {
-            options = existingOptions
+        let options = UserOptions(sorting: .Name, shouldDisplayCapacityLabel: false)
+        
+        if let display = UserDefaults.standard.object(forKey: self.displayKey) as? Bool,
+            let sorting = UserDefaults.standard.object(forKey: self.sortingOptionsKey) as? Int {
+            return UserOptions(sorting: sorting, shouldDisplayCapacityLabel: display)
         }
         return options
     }

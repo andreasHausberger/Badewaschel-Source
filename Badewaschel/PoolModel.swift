@@ -23,7 +23,7 @@ public class PoolModel: ObservableObject {
     public var location: CLLocation? {
         self.locationManager.userLocation
     }
-
+    
     public var locationIsAvailable: Bool {
         self.locationManager.locationIsAvailable
     }
@@ -35,6 +35,8 @@ public class PoolModel: ObservableObject {
     init() {
         self.networkManager.getAllPools(completion: self.getPoolData(_:))
         self.favorites = self.dataManager.getFavoriteIDs()
+        self.options = self.dataManager.getUserOptions()
+        
     }
     
     //MARK: Pool Data & Sorting
@@ -42,7 +44,12 @@ public class PoolModel: ObservableObject {
     func getPoolData(_ response:PoolResponse) {
         DispatchQueue.main.async {
             self.pools = response.features
-            self.sortPools(sorting: .Name)
+            if self.options != nil {
+                self.sortPools(sorting: self.options!.sorting)
+            }
+            else {
+                self.sortPools(sorting: .Name)
+            }
             let lastUpdateStrings = self.pools.map( { $0.properties.timestampModifiedFormat })
             
             for string in lastUpdateStrings {
@@ -138,17 +145,28 @@ public class PoolModel: ObservableObject {
     
     public func setOptions(options: UserOptions) {
         self.dataManager.setUserOptions(options: options)
+        self.options = options
     }
 }
 
-public enum Sorting {
-    case Favorites;
-    case Vicinity;
-    case Capacity;
-    case Name;
+public enum Sorting: Int {
+    case Favorites = 1;
+    case Vicinity = 2;
+    case Capacity = 3;
+    case Name = 0;
 }
 
 public struct UserOptions {
     var sorting: Sorting
     var shouldDisplayCapacityLabel: Bool
+    
+    init(sorting: Int, shouldDisplayCapacityLabel: Bool) {
+        self.sorting = Sorting(rawValue: sorting) ?? .Name
+        self.shouldDisplayCapacityLabel = shouldDisplayCapacityLabel
+    }
+    
+    init(sorting: Sorting, shouldDisplayCapacityLabel: Bool) {
+        self.sorting = sorting
+        self.shouldDisplayCapacityLabel = shouldDisplayCapacityLabel
+    }
 }

@@ -29,17 +29,11 @@ struct PoolListView: View {
                         .font(.title)
                 }.sheet(isPresented: $showingDetail) {
                     if self.idiom == .pad {
-                        VStack {
-                            Spacer()
-                            Text("Einstellungen").font(.largeTitle)
-                            PoolSettingsView(model: self.viewModel)
-                        }
+                        PoolSettingsView(model: self.viewModel, options: self.viewModel.options!)
                     }
                     else {
-                        NavigationView {
-                            PoolSettingsView(model: self.viewModel)
-                                .navigationBarTitle("Einstellungen")
-                        }
+                        PoolSettingsView(model: self.viewModel, options: self.viewModel.options!)
+                            .navigationBarTitle("Einstellungen")
                     }
                     
                 },
