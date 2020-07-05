@@ -26,7 +26,6 @@ struct PoolSettingsView: View {
         self.model.getFavorites()
     }
     var body: some View {
-        
         VStack {
             HStack {
                 Text("Einstellungen")
@@ -61,14 +60,7 @@ struct PoolSettingsView: View {
                 }
                 Section(header: Text("Meine Favoriten")) {
                     List(self.favoritePools) { pool in
-                        if self.idiom == .pad {
                             PoolRow(pool: pool)
-                        }
-                        else {
-                            NavigationLink(destination: PoolDetailView(pool: pool, model: self.model, isFavorite: self.model.isFavorite(id: pool.id))) {
-                                PoolRow(pool: pool)
-                            }
-                        }
                     }
                 }
                 
@@ -90,6 +82,7 @@ struct PoolSettingsView: View {
                 }
             }
         }
+        
     }
     
 }

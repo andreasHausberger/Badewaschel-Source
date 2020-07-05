@@ -17,7 +17,7 @@ struct PoolListView: View {
         NavigationView {
             List(viewModel.pools, id: \.id) { pool in
                 NavigationLink(destination: PoolDetailView(pool: pool, model: self.viewModel, isFavorite: self.viewModel.isFavorite(id: pool.id))) {
-                    PoolRow(pool: pool, isFavorite: self.viewModel.isFavorite(id: pool.id))
+                    PoolRow(pool: pool, isFavorite: self.viewModel.isFavorite(id: pool.id), shouldDisplayCapacityLabel: self.viewModel.options?.shouldDisplayCapacityLabel)
                 }
             }
             .navigationBarTitle(Text("BadeWaschel"))
@@ -78,17 +78,25 @@ struct PoolListView: View {
 struct PoolRow: View {
     var pool: Pool
     var isFavorite: Bool?
+    var shouldDisplayCapacityLabel: Bool?
     var body: some View {
-        HStack {
-            
-            Text(pool.properties.name).lineLimit(1)
-            if self.isFavorite != nil && self.isFavorite! {
-                Text("❤️")
+        VStack {
+            HStack {
+                Text(pool.properties.name).multilineTextAlignment(.leading).lineLimit(1)
+                if self.isFavorite != nil && self.isFavorite! {
+                    Text("❤️")
+                }
+                
+                Spacer()
+                AuslastungsAmpel(auslastungInt: pool.properties.auslastungAmpelKategorie0)
+                    .frame(width: 32, height: 32, alignment: .trailing)
             }
-            Spacer()
-            AuslastungsAmpel(auslastungInt: pool.properties.auslastungAmpelKategorie0)
-                .frame(width: 32, height: 32, alignment: .trailing)
+            if (self.shouldDisplayCapacityLabel != nil && self.shouldDisplayCapacityLabel!) {
+                Text(pool.properties.auslastungAmpelKatTxt0 ?? "").font(.footnote)
+            }
+            
         }
+        
     }
 }
 
