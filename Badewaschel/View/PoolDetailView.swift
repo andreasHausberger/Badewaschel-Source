@@ -68,8 +68,10 @@ struct PoolDetailView: View {
     
     func createMapsUrl() -> String {
         let address = pool?.properties.adresse
-        let uriEncodedAddress = address?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let mapsLink = "http://maps.apple.com/" + "?address=" + (uriEncodedAddress ?? "")
+        let cleanAddress = address?.split(separator: ",", maxSplits: 1)[1].description ?? ""
+        
+        let uriEncodedAddress = cleanAddress.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let mapsLink = "http://maps.apple.com/?address=\(uriEncodedAddress ?? "")"
         return mapsLink
     }
 }
