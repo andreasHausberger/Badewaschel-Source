@@ -36,7 +36,14 @@ public class PoolModel: ObservableObject {
         self.networkManager.getAllPools(completion: self.getPoolData(_:))
         self.favorites = self.dataManager.getFavoriteIDs()
         self.options = self.dataManager.getUserOptions()
-        
+    }
+    
+    func manuallyRefreshPools(completion: @escaping () -> ()) {
+        self.networkManager.getAllPools { response in
+            self.getPoolData(response)
+            completion()
+        }
+
     }
     
     //MARK: Pool Data & Sorting

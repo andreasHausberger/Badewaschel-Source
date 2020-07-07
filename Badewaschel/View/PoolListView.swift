@@ -8,10 +8,12 @@
 
 import SwiftUI
 import MapKit
+import SwiftUIRefresh
 
 struct PoolListView: View {
     @ObservedObject var viewModel = PoolModel()
     @State var showingDetail = false
+    @State var showingRefresh = false
     @State var showingMap = false
     var body: some View {
         NavigationView {
@@ -20,6 +22,11 @@ struct PoolListView: View {
                     PoolRow(pool: pool, isFavorite: self.viewModel.isFavorite(id: pool.id), shouldDisplayCapacityLabel: self.viewModel.options?.shouldDisplayCapacityLabel)
                 }
             }
+            .pullToRefresh(isShowing: $showingRefresh) {
+                self.viewModel.manuallyRefreshPools {
+                    self.showingRefresh = false
+                }
+                }
             .navigationBarTitle(Text("BadeWaschel"))
             .navigationBarItems(
                 leading: Button(action: {
@@ -47,12 +54,12 @@ struct PoolListView: View {
                         VStack {
                             Spacer()
                             Text("Alle Schwimmbäder").font(.largeTitle)
-                            MapView(latitude: 48.20, longitude: 16.37, name: "", allLocations: self.getAllLocations(), spanConstant: 0.25)
+                            MapView(latitude: 48.20, longitude: 16.37, name: "", allLocations: self.getAllAnnotations(), spanConstant: 0.25)
                         }
                     }
                     else {
                         NavigationView {
-                            MapView(latitude: 48.20, longitude: 16.37, name: "", allLocations: self.getAllLocations(), spanConstant: 0.25)
+                            MapView(latitude: 48.20, longitude: 16.37, name: "", allLocations: self.getAllAnnotations(), spanConstant: 0.25)
                                 .navigationBarTitle("Alle Schwimmbäder")
                         }
                     }
@@ -62,14 +69,15 @@ struct PoolListView: View {
         }
     }
     
-    func getAllLocations() -> [MKPointAnnotation] {
+    func getAllAnnotations() -> [MKPointAnnotation] {
         let pools = viewModel.pools
         
         let placemarks = pools.map( { pool -> MKPointAnnotation in
-            let placemark = MKPointAnnotation()
-            placemark.coordinate = CLLocationCoordinate2D(latitude: pool.geometry.coordinates[1], longitude: pool.geometry.coordinates[0])
-            placemark.title = pool.properties.name
-            return placemark
+            let poolAnnotation = PoolAnnotation()
+            poolAnnotation.coordinate = CLLocationCoordinate2D(latitude: pool.geometry.coordinates[1], longitude: pool.geometry.coordinates[0])
+            poolAnnotation.title = pool.properties.name
+            poolAnnotation.pool = pool
+            return poolAnnotation
         })
         return placemarks
     }
@@ -103,22 +111,7 @@ struct PoolRow: View {
 struct AuslastungsAmpel: View {
     var auslastungInt: Int
     var color: Color {
-        switch auslastungInt {
-        case 0:
-            return .gray
-        case 1:
-            return .green
-        case 2:
-            return Color("LightGreen")
-        case 3:
-            return .yellow
-        case 4:
-            return .orange
-        case 5:
-            return .red
-        default:
-            return .gray
-        }
+        Color(UIColor.getColorForCapacity(capacity: auslastungInt))
     }
     var body: some View {
         Circle()
