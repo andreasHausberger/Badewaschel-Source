@@ -60,7 +60,7 @@ struct PoolSettingsView: View {
                 }
                 Section(header: Text("Meine Favoriten")) {
                     List(self.favoritePools) { pool in
-                            PoolRow(pool: pool)
+                        PoolRow(pool: pool)
                     }
                 }
                 
@@ -79,6 +79,19 @@ struct PoolSettingsView: View {
                         }
                     }
                     Text("Die Daten werden aus der oben genannten Quelle entnommen und unterliegen keinen inhaltlichen Änderungen, die durch die App vorgenommen wurden.")
+                }
+                
+                Section(header: Text("Art & Design")) {
+                    HStack {
+                        Text("App Logo")
+                        Spacer()
+                        Text("Yizhou \"Andi\" Cui")
+                    }
+                    HStack {
+                        Text("Launch Screen")
+                        Spacer()
+                        Text("Louise Popl")
+                    }
                 }
             }
         }
