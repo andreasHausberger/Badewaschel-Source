@@ -58,8 +58,9 @@ struct MapView_Previews: PreviewProvider {
 class MapViewDelegate: NSObject, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Annotation")
         let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Annotation")
-        guard let poolAnnotation = annotation as? PoolAnnotation else { return pin }
+        guard let poolAnnotation = annotation as? PoolAnnotation else { return nil }
         pin.canShowCallout = true
         pin.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         
