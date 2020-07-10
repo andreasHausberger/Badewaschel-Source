@@ -15,18 +15,37 @@ struct PoolListView: View {
     @State var showingDetail = false
     @State var showingRefresh = false
     @State var showingMap = false
+    @State var listShown: ShownList = .Pools
     var body: some View {
         NavigationView {
-            List(viewModel.pools, id: \.id) { pool in
-                NavigationLink(destination: PoolDetailView(pool: pool, model: self.viewModel, isFavorite: self.viewModel.isFavorite(id: pool.id))) {
-                    PoolRow(pool: pool, isFavorite: self.viewModel.isFavorite(id: pool.id), shouldDisplayCapacityLabel: self.viewModel.options?.shouldDisplayCapacityLabel)
+            VStack {
+                Picker("Anzeige", selection: $listShown) {
+                    Text("Schwimmbäder").tag(ShownList.Pools)
+                    Text("Badestellen").tag(ShownList.Spots)
+                }.pickerStyle(SegmentedPickerStyle())
+                if (listShown == .Pools) {
+                    List(viewModel.pools, id: \.id) { pool in
+                        NavigationLink(destination: PoolDetailView(pool: pool, model: self.viewModel, isFavorite: self.viewModel.isFavorite(id: pool.id))) {
+                            PoolRow(pool: pool, isFavorite: self.viewModel.isFavorite(id: pool.id), shouldDisplayCapacityLabel: self.viewModel.options?.shouldDisplayCapacityLabel)
+                        }
+                    }
+                    .pullToRefresh(isShowing: $showingRefresh) {
+                        self.viewModel.manuallyRefreshPools {
+                            self.showingRefresh = false
+                        }
+                    }
                 }
+                else {
+                    VStack {
+                        Spacer()
+                        Text("Here come badestellen")
+                        Spacer()
+                    }
+                    
+                }
+                
             }
-            .pullToRefresh(isShowing: $showingRefresh) {
-                self.viewModel.manuallyRefreshPools {
-                    self.showingRefresh = false
-                }
-                }
+            
             .navigationBarTitle(Text("BadeWaschel"))
             .navigationBarItems(
                 leading: Button(action: {
@@ -123,4 +142,9 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         PoolListView()
     }
+}
+
+enum ShownList {
+    case Pools
+    case Spots
 }
