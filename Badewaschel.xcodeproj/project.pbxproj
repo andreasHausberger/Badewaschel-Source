@@ -24,6 +24,8 @@
 		E12DBD7424A6053F009BC4C7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD7324A6053F009BC4C7 /* NetworkManager.swift */; };
 		E12DBD7624A60612009BC4C7 /* PoolResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD7524A60612009BC4C7 /* PoolResponse.swift */; };
 		E1E4D50424C988D5001BB063 /* SpotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50324C988D5001BB063 /* SpotResponse.swift */; };
+		E1E4D50724C98A85001BB063 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50624C98A85001BB063 /* Constants.swift */; };
+		E1E4D50924C98B86001BB063 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50824C98B86001BB063 /* Response.swift */; };
 		E1F1B5A924ADCA2900438918 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5A824ADCA2900438918 /* LocationManager.swift */; };
 		E1F1B5AB24ADDB3400438918 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5AA24ADDB3400438918 /* DataManager.swift */; };
 		E1F1B5AF24AF1C0800438918 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5AE24AF1C0800438918 /* ViewExtension.swift */; };
@@ -52,6 +54,8 @@
 		E12DBD7524A60612009BC4C7 /* PoolResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolResponse.swift; sourceTree = "<group>"; };
 		E1CDD12524B7654F00B7E6D5 /* Badewaschel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Badewaschel.entitlements; sourceTree = "<group>"; };
 		E1E4D50324C988D5001BB063 /* SpotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotResponse.swift; sourceTree = "<group>"; };
+		E1E4D50624C98A85001BB063 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E1E4D50824C98B86001BB063 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		E1F1B5A824ADCA2900438918 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E1F1B5AA24ADDB3400438918 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E1F1B5AE24AF1C0800438918 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 			children = (
 				E12DBD7524A60612009BC4C7 /* PoolResponse.swift */,
 				E1E4D50324C988D5001BB063 /* SpotResponse.swift */,
+				E1E4D50824C98B86001BB063 /* Response.swift */,
 			);
 			path = ResponseObject;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				E12DBD6524A6052A009BC4C7 /* Assets.xcassets */,
 				E12DBD6A24A6052A009BC4C7 /* LaunchScreen.storyboard */,
 				E12DBD6024A60528009BC4C7 /* Badewaschel.xcdatamodeld */,
+				E1E4D50624C98A85001BB063 /* Constants.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -296,8 +302,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E12DBD7624A60612009BC4C7 /* PoolResponse.swift in Sources */,
+				E1E4D50724C98A85001BB063 /* Constants.swift in Sources */,
 				E1F1B5AB24ADDB3400438918 /* DataManager.swift in Sources */,
 				E1E4D50424C988D5001BB063 /* SpotResponse.swift in Sources */,
+				E1E4D50924C98B86001BB063 /* Response.swift in Sources */,
 				E12DBD5D24A60528009BC4C7 /* AppDelegate.swift in Sources */,
 				E12DBD5F24A60528009BC4C7 /* SceneDelegate.swift in Sources */,
 				E1F1B5A924ADCA2900438918 /* LocationManager.swift in Sources */,

@@ -5,7 +5,7 @@
 import Foundation
 
 // MARK: - PoolResponse
-struct PoolResponse: Codable {
+struct PoolResponse: Response {
     let type: String
     let totalFeatures: Int
     let features: [Pool]

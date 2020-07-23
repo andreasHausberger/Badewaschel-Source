@@ -18,7 +18,7 @@ class NetworkManager {
     
     private var dataTask: URLSessionDataTask?
     
-    private var apiUrl = "https://data.wien.gv.at/daten/geo?"
+    private var poolApiURL = Constants.poolURL
     
     private var components = "service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SCHWIMMBADOGD&srsName=EPSG:4326&outputFormat=json"
     
@@ -28,16 +28,14 @@ class NetworkManager {
     }
     
     public func getAllPools(completion: @escaping (PoolResponse) -> ()) {
-        self.getDataFromUrl(completion: completion)
+        self.getDataFromUrl(url: self.poolApiURL,completion: completion)
     }
     
-    private func getDataFromUrl(completion: @escaping (PoolResponse) -> ()) {
+    private func getDataFromUrl<ResponseObject: Response>(url: String, completion: @escaping (ResponseObject) -> ()) {
         dataTask?.cancel()
         
-        guard var urlComponents = URLComponents(string: apiUrl) else { return }
-        urlComponents.query = components
         
-        guard let url = urlComponents.url else { return }
+        guard let url = URL(string: url) else { return }
         
         dataTask = defaultSession.dataTask(with: url) { data, response, error in
             if let error = error {
@@ -48,9 +46,8 @@ class NetworkManager {
                let response = response as? HTTPURLResponse,
                response.statusCode == 200 {
                 do {
-                    self.data = try JSONDecoder().decode(PoolResponse.self, from: data)
-                    guard self.data != nil else { return }
-                    completion(self.data!)
+                    let responseData = try JSONDecoder().decode(ResponseObject.self, from: data)
+                    completion(responseData)
                 }
                 catch let error {
                     print("Error: \(error)")

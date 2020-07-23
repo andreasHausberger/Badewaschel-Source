@@ -6,7 +6,7 @@
 import Foundation
 
 // MARK: - Welcome
-struct SpotResponse: Codable {
+struct SpotResponse: Response {
     let type: String
     let totalFeatures: Int
     let features: [Spot]
