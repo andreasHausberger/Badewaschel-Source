@@ -22,8 +22,35 @@ struct PoolListView: View {
                 self.showingRefresh = false
             }
         }
+        .animation(.easeInOut)
     }
 }
+
+struct PoolRow: View {
+    var pool: Pool
+    var isFavorite: Bool?
+    var shouldDisplayCapacityLabel: Bool?
+    var body: some View {
+        VStack {
+            HStack {
+                Text(pool.properties.name).multilineTextAlignment(.leading).lineLimit(1)
+                if self.isFavorite != nil && self.isFavorite! {
+                    Text("❤️")
+                }
+                
+                Spacer()
+                AuslastungsAmpel(auslastungInt: pool.properties.auslastungAmpelKategorie0)
+                    .frame(width: 32, height: 32, alignment: .trailing)
+            }
+            if (self.shouldDisplayCapacityLabel != nil && self.shouldDisplayCapacityLabel!) {
+                Text(pool.properties.auslastungAmpelKatTxt0 ?? "").font(.footnote)
+            }
+            
+        }
+        
+    }
+}
+
 
 struct PoolListView_Previews: PreviewProvider {
     static var previews: some View {
