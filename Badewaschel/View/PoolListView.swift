@@ -25,7 +25,7 @@ struct PoolListView: View {
     }
 }
 
-struct PoolListVIew_Previews: PreviewProvider {
+struct PoolListView_Previews: PreviewProvider {
     static var previews: some View {
         PoolListView(viewModel: PoolModel(), showingRefresh: false)
     }
