@@ -14,7 +14,10 @@ struct SpotListView: View {
     var body: some View {
         List(spotModel.spots) { spot in
             SpotRow(spot: spot)
-        }
+        }.pullToRefresh(isShowing: $showingRefresh) {
+            print("does nothing")
+            self.showingRefresh.toggle()
+        }.animation(.easeInOut)
     }
 }
 

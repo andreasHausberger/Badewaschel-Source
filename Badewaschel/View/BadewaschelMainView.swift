@@ -24,13 +24,16 @@ struct BadewaschelMainView: View {
                     Text("Schwimmbäder").tag(ShownList.Pools)
                     Text("Badestellen").tag(ShownList.Spots)
                 }.pickerStyle(SegmentedPickerStyle())
+                    .padding(.horizontal, 8.0)
                 if (listShown == .Pools) {
                     PoolListView(viewModel: viewModel, showingRefresh: self.showingRefresh)
+                        .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
                 }
                 else {
-                    VStack {
-                        SpotListView(spotModel: spotModel, showingRefresh: self.showingRefresh)
-                    }
+                    
+                    SpotListView(spotModel: spotModel, showingRefresh: self.showingRefresh)
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                    
                 }
                 
             }
@@ -90,30 +93,6 @@ struct BadewaschelMainView: View {
     }
 }
 
-struct PoolRow: View {
-    var pool: Pool
-    var isFavorite: Bool?
-    var shouldDisplayCapacityLabel: Bool?
-    var body: some View {
-        VStack {
-            HStack {
-                Text(pool.properties.name).multilineTextAlignment(.leading).lineLimit(1)
-                if self.isFavorite != nil && self.isFavorite! {
-                    Text("❤️")
-                }
-                
-                Spacer()
-                AuslastungsAmpel(auslastungInt: pool.properties.auslastungAmpelKategorie0)
-                    .frame(width: 32, height: 32, alignment: .trailing)
-            }
-            if (self.shouldDisplayCapacityLabel != nil && self.shouldDisplayCapacityLabel!) {
-                Text(pool.properties.auslastungAmpelKatTxt0 ?? "").font(.footnote)
-            }
-            
-        }
-        
-    }
-}
 
 struct AuslastungsAmpel: View {
     var auslastungInt: Int
