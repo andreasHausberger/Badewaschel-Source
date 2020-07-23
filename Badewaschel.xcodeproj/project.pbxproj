@@ -23,6 +23,7 @@
 		E12DBD6C24A6052A009BC4C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E12DBD6A24A6052A009BC4C7 /* LaunchScreen.storyboard */; };
 		E12DBD7424A6053F009BC4C7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD7324A6053F009BC4C7 /* NetworkManager.swift */; };
 		E12DBD7624A60612009BC4C7 /* PoolResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD7524A60612009BC4C7 /* PoolResponse.swift */; };
+		E1E4D50424C988D5001BB063 /* SpotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50324C988D5001BB063 /* SpotResponse.swift */; };
 		E1F1B5A924ADCA2900438918 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5A824ADCA2900438918 /* LocationManager.swift */; };
 		E1F1B5AB24ADDB3400438918 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5AA24ADDB3400438918 /* DataManager.swift */; };
 		E1F1B5AF24AF1C0800438918 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5AE24AF1C0800438918 /* ViewExtension.swift */; };
@@ -50,6 +51,7 @@
 		E12DBD7324A6053F009BC4C7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E12DBD7524A60612009BC4C7 /* PoolResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolResponse.swift; sourceTree = "<group>"; };
 		E1CDD12524B7654F00B7E6D5 /* Badewaschel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Badewaschel.entitlements; sourceTree = "<group>"; };
+		E1E4D50324C988D5001BB063 /* SpotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotResponse.swift; sourceTree = "<group>"; };
 		E1F1B5A824ADCA2900438918 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E1F1B5AA24ADDB3400438918 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E1F1B5AE24AF1C0800438918 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -115,7 +117,7 @@
 				E1FBA22824A8C0180075D3C3 /* Supporting */,
 				E1FBA22724A8C00B0075D3C3 /* Manager */,
 				E1187A4A24A79E860081BB28 /* PoolModel.swift */,
-				E12DBD7524A60612009BC4C7 /* PoolResponse.swift */,
+				E1E4D50524C9895E001BB063 /* ResponseObject */,
 			);
 			path = Badewaschel;
 			sourceTree = "<group>";
@@ -126,6 +128,15 @@
 				E12DBD6824A6052A009BC4C7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E1E4D50524C9895E001BB063 /* ResponseObject */ = {
+			isa = PBXGroup;
+			children = (
+				E12DBD7524A60612009BC4C7 /* PoolResponse.swift */,
+				E1E4D50324C988D5001BB063 /* SpotResponse.swift */,
+			);
+			path = ResponseObject;
 			sourceTree = "<group>";
 		};
 		E1F1B5AC24AF1BD200438918 /* View */ = {
@@ -286,6 +297,7 @@
 			files = (
 				E12DBD7624A60612009BC4C7 /* PoolResponse.swift in Sources */,
 				E1F1B5AB24ADDB3400438918 /* DataManager.swift in Sources */,
+				E1E4D50424C988D5001BB063 /* SpotResponse.swift in Sources */,
 				E12DBD5D24A60528009BC4C7 /* AppDelegate.swift in Sources */,
 				E12DBD5F24A60528009BC4C7 /* SceneDelegate.swift in Sources */,
 				E1F1B5A924ADCA2900438918 /* LocationManager.swift in Sources */,
