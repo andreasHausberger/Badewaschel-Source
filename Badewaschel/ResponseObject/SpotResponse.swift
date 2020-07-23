@@ -7,19 +7,21 @@ import Foundation
 
 // MARK: - Welcome
 struct SpotResponse: Response {
+    typealias Object = Spot
+    
     let type: String
     let totalFeatures: Int
-    let features: [Spot]
+    var features: [Spot]
     let crs: CRS
 }
 
 // MARK: - Feature
-struct Spot: Codable {
+struct Spot: DataObject {
     let type: FeatureType
     let id: String
     let geometry: Geometry
     let geometryName: GeometryName
-    let properties: FeatureProperties
+    let properties: SpotProperties
 
     enum CodingKeys: String, CodingKey {
         case type, id, geometry
@@ -38,7 +40,7 @@ enum GeometryName: String, Codable {
 
 // MARK: - FeatureProperties
 struct SpotProperties: Codable {
-    let bezeichnung: String
+    let name: String
     let weitereInfo: String
     let bezirk, badequalitaet: Int
     let untersuchungsdatum: String
@@ -47,7 +49,7 @@ struct SpotProperties: Codable {
     let seAnnoCADData: JSONNull?
 
     enum CodingKeys: String, CodingKey {
-        case bezeichnung = "BEZEICHNUNG"
+        case name = "BEZEICHNUNG"
         case weitereInfo = "WEITERE_INFO"
         case bezirk = "BEZIRK"
         case badequalitaet = "BADEQUALITAET"

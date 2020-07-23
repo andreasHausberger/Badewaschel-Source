@@ -17,7 +17,7 @@
 		E12DBD5D24A60528009BC4C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD5C24A60528009BC4C7 /* AppDelegate.swift */; };
 		E12DBD5F24A60528009BC4C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD5E24A60528009BC4C7 /* SceneDelegate.swift */; };
 		E12DBD6224A60528009BC4C7 /* Badewaschel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD6024A60528009BC4C7 /* Badewaschel.xcdatamodeld */; };
-		E12DBD6424A60528009BC4C7 /* PoolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD6324A60528009BC4C7 /* PoolListView.swift */; };
+		E12DBD6424A60528009BC4C7 /* BadewaschelMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD6324A60528009BC4C7 /* BadewaschelMainView.swift */; };
 		E12DBD6624A6052A009BC4C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E12DBD6524A6052A009BC4C7 /* Assets.xcassets */; };
 		E12DBD6924A6052A009BC4C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E12DBD6824A6052A009BC4C7 /* Preview Assets.xcassets */; };
 		E12DBD6C24A6052A009BC4C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E12DBD6A24A6052A009BC4C7 /* LaunchScreen.storyboard */; };
@@ -26,6 +26,10 @@
 		E1E4D50424C988D5001BB063 /* SpotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50324C988D5001BB063 /* SpotResponse.swift */; };
 		E1E4D50724C98A85001BB063 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50624C98A85001BB063 /* Constants.swift */; };
 		E1E4D50924C98B86001BB063 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50824C98B86001BB063 /* Response.swift */; };
+		E1E4D50F24C992F5001BB063 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50E24C992F5001BB063 /* DataObject.swift */; };
+		E1E4D51124C9AF74001BB063 /* SpotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D51024C9AF74001BB063 /* SpotModel.swift */; };
+		E1E4D51324C9B38C001BB063 /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D51224C9B38C001BB063 /* SpotListView.swift */; };
+		E1E4D51524C9B3EC001BB063 /* PoolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D51424C9B3EC001BB063 /* PoolListView.swift */; };
 		E1F1B5A924ADCA2900438918 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5A824ADCA2900438918 /* LocationManager.swift */; };
 		E1F1B5AB24ADDB3400438918 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5AA24ADDB3400438918 /* DataManager.swift */; };
 		E1F1B5AF24AF1C0800438918 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5AE24AF1C0800438918 /* ViewExtension.swift */; };
@@ -45,7 +49,7 @@
 		E12DBD5C24A60528009BC4C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E12DBD5E24A60528009BC4C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E12DBD6124A60528009BC4C7 /* Badewaschel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Badewaschel.xcdatamodel; sourceTree = "<group>"; };
-		E12DBD6324A60528009BC4C7 /* PoolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListView.swift; sourceTree = "<group>"; };
+		E12DBD6324A60528009BC4C7 /* BadewaschelMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadewaschelMainView.swift; sourceTree = "<group>"; };
 		E12DBD6524A6052A009BC4C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E12DBD6824A6052A009BC4C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E12DBD6B24A6052A009BC4C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,6 +60,10 @@
 		E1E4D50324C988D5001BB063 /* SpotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotResponse.swift; sourceTree = "<group>"; };
 		E1E4D50624C98A85001BB063 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E1E4D50824C98B86001BB063 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		E1E4D50E24C992F5001BB063 /* DataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
+		E1E4D51024C9AF74001BB063 /* SpotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotModel.swift; sourceTree = "<group>"; };
+		E1E4D51224C9B38C001BB063 /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
+		E1E4D51424C9B3EC001BB063 /* PoolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListView.swift; sourceTree = "<group>"; };
 		E1F1B5A824ADCA2900438918 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E1F1B5AA24ADDB3400438918 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E1F1B5AE24AF1C0800438918 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -121,6 +129,7 @@
 				E1FBA22824A8C0180075D3C3 /* Supporting */,
 				E1FBA22724A8C00B0075D3C3 /* Manager */,
 				E1187A4A24A79E860081BB28 /* PoolModel.swift */,
+				E1E4D51024C9AF74001BB063 /* SpotModel.swift */,
 				E1E4D50524C9895E001BB063 /* ResponseObject */,
 			);
 			path = Badewaschel;
@@ -140,6 +149,7 @@
 				E12DBD7524A60612009BC4C7 /* PoolResponse.swift */,
 				E1E4D50324C988D5001BB063 /* SpotResponse.swift */,
 				E1E4D50824C98B86001BB063 /* Response.swift */,
+				E1E4D50E24C992F5001BB063 /* DataObject.swift */,
 			);
 			path = ResponseObject;
 			sourceTree = "<group>";
@@ -147,11 +157,13 @@
 		E1F1B5AC24AF1BD200438918 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E12DBD6324A60528009BC4C7 /* PoolListView.swift */,
+				E12DBD6324A60528009BC4C7 /* BadewaschelMainView.swift */,
+				E1E4D51224C9B38C001BB063 /* SpotListView.swift */,
 				E12A6D3924B20F8700651D5E /* PoolAnnotation.swift */,
 				E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */,
 				E11E59D624A8FF3D003C0719 /* MapView.swift */,
 				E124AB5924A912AD0099C9F9 /* PoolSettingsView.swift */,
+				E1E4D51424C9B3EC001BB063 /* PoolListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -301,21 +313,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1E4D51324C9B38C001BB063 /* SpotListView.swift in Sources */,
 				E12DBD7624A60612009BC4C7 /* PoolResponse.swift in Sources */,
+				E1E4D51124C9AF74001BB063 /* SpotModel.swift in Sources */,
 				E1E4D50724C98A85001BB063 /* Constants.swift in Sources */,
 				E1F1B5AB24ADDB3400438918 /* DataManager.swift in Sources */,
 				E1E4D50424C988D5001BB063 /* SpotResponse.swift in Sources */,
+				E1E4D51524C9B3EC001BB063 /* PoolListView.swift in Sources */,
 				E1E4D50924C98B86001BB063 /* Response.swift in Sources */,
 				E12DBD5D24A60528009BC4C7 /* AppDelegate.swift in Sources */,
 				E12DBD5F24A60528009BC4C7 /* SceneDelegate.swift in Sources */,
 				E1F1B5A924ADCA2900438918 /* LocationManager.swift in Sources */,
 				E12DBD7424A6053F009BC4C7 /* NetworkManager.swift in Sources */,
 				E12A6D3A24B20F8700651D5E /* PoolAnnotation.swift in Sources */,
-				E12DBD6424A60528009BC4C7 /* PoolListView.swift in Sources */,
+				E12DBD6424A60528009BC4C7 /* BadewaschelMainView.swift in Sources */,
 				E124AB5A24A912AD0099C9F9 /* PoolSettingsView.swift in Sources */,
 				E12A6D3C24B211F700651D5E /* ColorExtension.swift in Sources */,
 				E1187A4B24A79E860081BB28 /* PoolModel.swift in Sources */,
 				E12DBD6224A60528009BC4C7 /* Badewaschel.xcdatamodeld in Sources */,
+				E1E4D50F24C992F5001BB063 /* DataObject.swift in Sources */,
 				E11E59D724A8FF3D003C0719 /* MapView.swift in Sources */,
 				E11E59D524A8CEF4003C0719 /* PoolDetailView.swift in Sources */,
 				E1F1B5AF24AF1C0800438918 /* ViewExtension.swift in Sources */,

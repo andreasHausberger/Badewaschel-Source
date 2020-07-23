@@ -20,20 +20,39 @@ class NetworkManager {
     
     private var poolApiURL = Constants.poolURL
     
-    private var components = "service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SCHWIMMBADOGD&srsName=EPSG:4326&outputFormat=json"
-    
+    private var spotApiURL = Constants.spotURL
     
     public static func shared() -> NetworkManager {
         return NetworkManager.sharedManager
     }
     
+    /**
+       Get all Pool objects.
+
+       - parameter completion: Function that takes a response object. Should be supplied by Model class.
+    */
     public func getAllPools(completion: @escaping (PoolResponse) -> ()) {
         self.getDataFromUrl(url: self.poolApiURL,completion: completion)
     }
     
-    private func getDataFromUrl<ResponseObject: Response>(url: String, completion: @escaping (ResponseObject) -> ()) {
-        dataTask?.cancel()
-        
+    /**
+    Get all Spot objects.
+
+    - parameter completion: Function that takes a response object. Should be supplied by Model class.
+    */
+    public func getAllSpots(completion: @escaping (SpotResponse) -> ()) {
+        self.getDataFromUrl(url: self.spotApiURL, completion: completion)
+    }
+    
+    /**
+    Gets JSON data from supplied URL. Completion on success.
+
+    - parameter url: URL String of API Url.
+    - parameter completion: Function that takes a response object. Should be supplied by Model class.
+    - warning: Response Object confirms to Response protocol. May cause errors otherwise.
+    */
+    private func getDataFromUrl<ResponseObject: Response> (url: String, completion: @escaping (ResponseObject) -> ()) {
+//        dataTask?.cancel()
         
         guard let url = URL(string: url) else { return }
         
@@ -56,28 +75,5 @@ class NetworkManager {
             }
         }
         dataTask?.resume()
-    }
-    
-    private func decodeData(_ data: Data) -> [Pool]? {
-        do {
-            let poolData = try JSONDecoder().decode(PoolResponse.self, from: data)
-            return poolData.features
-        }
-        catch let error {
-            print("Error \(error)")
-        }
-        return nil
-    }
-    
-    private func updatePoolData(_ data: Data) {
-        do {
-            self.data =  try JSONDecoder().decode(PoolResponse.self, from: data)
-            if self.data != nil {
-                print("Decoded Data for \(self.data!.features.count) items")
-            }
-        }
-        catch let error {
-            print("Error: \(error)")
-        }
     }
 }

@@ -139,7 +139,7 @@ struct InfoView: View {
 
 
 struct PoolDetailView_Previews: PreviewProvider {
-    static let examplePool = PoolListView().viewModel.pools[0]
+    static let examplePool = BadewaschelMainView().viewModel.pools[0]
     static var previews: some View {
         PoolDetailView(pool: nil, model: PoolModel(), isFavorite: true)
     }

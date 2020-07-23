@@ -6,9 +6,11 @@ import Foundation
 
 // MARK: - PoolResponse
 struct PoolResponse: Response {
+    typealias Object = Pool
+    
     let type: String
     let totalFeatures: Int
-    let features: [Pool]
+    var features: [Pool]
     let crs: CRS
 }
 
@@ -24,7 +26,7 @@ struct CRSProperties: Codable {
 }
 
 // MARK: - Pool
-public struct Pool: Codable, Identifiable {
+public struct Pool: DataObject {
     let type: String?
     public let id: String
     let geometry: Geometry

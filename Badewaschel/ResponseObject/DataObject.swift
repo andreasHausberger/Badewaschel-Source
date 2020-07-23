@@ -1,5 +1,5 @@
 //
-//  Response.swift
+//  DataObject.swift
 //  Badewaschel
 //
 //  Created by Andreas Hausberger on 23.07.20.
@@ -8,7 +8,5 @@
 
 import Foundation
 
-protocol Response: Codable {
-    associatedtype Object: DataObject
-    var features: [Object] { get set }
+protocol DataObject: Codable, Identifiable {
 }

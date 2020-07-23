@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-public class PoolModel: ObservableObject {
+class PoolModel: ObservableObject {
     
     public var sorting: Sorting = .Name 
     private let networkManager = NetworkManager.shared()
@@ -38,7 +38,7 @@ public class PoolModel: ObservableObject {
         self.options = self.dataManager.getUserOptions()
     }
     
-    func manuallyRefreshPools(completion: @escaping () -> ()) {
+    func manuallyRefreshObjects(completion: @escaping () -> ()) {
         self.networkManager.getAllPools { response in
             self.getPoolData(response)
             completion()
@@ -67,6 +67,8 @@ public class PoolModel: ObservableObject {
             }
         }
     }
+    
+    
     
     public func sortPools(sorting: Sorting) {
         switch sorting {
