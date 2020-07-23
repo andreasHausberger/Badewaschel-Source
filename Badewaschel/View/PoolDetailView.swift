@@ -57,15 +57,6 @@ struct PoolDetailView: View {
             }))
     }
     
-    func openLink(link: String) {
-        if let url = URL(string: link) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-        else {
-            print("No link")
-        }
-    }
-    
     func createMapsUrl() -> String {
         let address = pool?.properties.adresse
         let cleanAddress = address?.split(separator: ",", maxSplits: 1)[1].description ?? ""

@@ -30,6 +30,7 @@
 		E1E4D51124C9AF74001BB063 /* SpotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D51024C9AF74001BB063 /* SpotModel.swift */; };
 		E1E4D51324C9B38C001BB063 /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D51224C9B38C001BB063 /* SpotListView.swift */; };
 		E1E4D51524C9B3EC001BB063 /* PoolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D51424C9B3EC001BB063 /* PoolListView.swift */; };
+		E1E4D51724C9C29D001BB063 /* SpotDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D51624C9C29D001BB063 /* SpotDetailView.swift */; };
 		E1F1B5A924ADCA2900438918 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5A824ADCA2900438918 /* LocationManager.swift */; };
 		E1F1B5AB24ADDB3400438918 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5AA24ADDB3400438918 /* DataManager.swift */; };
 		E1F1B5AF24AF1C0800438918 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1B5AE24AF1C0800438918 /* ViewExtension.swift */; };
@@ -64,6 +65,7 @@
 		E1E4D51024C9AF74001BB063 /* SpotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotModel.swift; sourceTree = "<group>"; };
 		E1E4D51224C9B38C001BB063 /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
 		E1E4D51424C9B3EC001BB063 /* PoolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolListView.swift; sourceTree = "<group>"; };
+		E1E4D51624C9C29D001BB063 /* SpotDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailView.swift; sourceTree = "<group>"; };
 		E1F1B5A824ADCA2900438918 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E1F1B5AA24ADDB3400438918 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E1F1B5AE24AF1C0800438918 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				E11E59D624A8FF3D003C0719 /* MapView.swift */,
 				E124AB5924A912AD0099C9F9 /* PoolSettingsView.swift */,
 				E1E4D51424C9B3EC001BB063 /* PoolListView.swift */,
+				E1E4D51624C9C29D001BB063 /* SpotDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 			files = (
 				E1E4D51324C9B38C001BB063 /* SpotListView.swift in Sources */,
 				E12DBD7624A60612009BC4C7 /* PoolResponse.swift in Sources */,
+				E1E4D51724C9C29D001BB063 /* SpotDetailView.swift in Sources */,
 				E1E4D51124C9AF74001BB063 /* SpotModel.swift in Sources */,
 				E1E4D50724C98A85001BB063 /* Constants.swift in Sources */,
 				E1F1B5AB24ADDB3400438918 /* DataManager.swift in Sources */,

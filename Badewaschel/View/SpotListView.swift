@@ -24,7 +24,7 @@ struct SpotListView: View {
 struct SpotRow: View {
     var spot: Spot
     var body: some View {
-        NavigationLink(destination: Text("yolo")) {
+        NavigationLink(destination: SpotDetailView(spot: spot)) {
             HStack {
                 Text(spot.properties.name)
                 Spacer()
