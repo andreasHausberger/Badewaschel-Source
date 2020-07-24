@@ -38,6 +38,10 @@ class PoolModel: ObservableObject {
         self.options = self.dataManager.getUserOptions()
     }
     
+    /**
+    Used for manual refresh of Lists. Repeats data call.
+    - parameter completion: Void Function that takes no arguments.Should be used for UI completion, e.g. disappearing a loading spinner.
+    */
     func manuallyRefreshObjects(completion: @escaping () -> ()) {
         self.networkManager.getAllPools { response in
             self.getPoolData(response)

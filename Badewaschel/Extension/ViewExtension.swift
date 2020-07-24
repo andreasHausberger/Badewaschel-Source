@@ -28,5 +28,25 @@ extension View {
         let mapsLink = "http://maps.apple.com/" + "?address=" + (uriEncodedAddress ?? "")
         return mapsLink
     }
+    
+    func getDate(originalDate: String) -> String? {
+          let input = originalDate
+          let formatter = DateFormatter()
+          formatter.locale = Locale(identifier: "de")
+          formatter.dateFormat = "yyyy-MM-dd'Z'"
+          if let date = formatter.date(from: input) {
+              
+              var dayComponent    = DateComponents()
+              dayComponent.day = 1 // For removing one day (yesterday): -1
+              let currentcalendar = Calendar.current
+              let datePlusOneDay  = currentcalendar.date(byAdding: dayComponent, to: date)
+              
+              let outputFormatter = DateFormatter()
+              outputFormatter.dateFormat = "EEEE, d. MMMM, yyyy"
+              outputFormatter.locale = Locale(identifier: "de_AT")
+              return(outputFormatter.string(from: datePlusOneDay ?? Date()))
+          }
+          return nil
+      }
 
 }
