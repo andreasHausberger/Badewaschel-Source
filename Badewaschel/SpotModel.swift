@@ -12,8 +12,8 @@ class SpotModel: ObservableObject {
     
     private let networkManager = NetworkManager.shared()
     private let dataManager = DataManager()
-    var spots = [Spot]()
-    var favorites = [String]()
+    @Published var spots = [Spot]()
+    @Published var favorites = [String]()
     
     init() {
         DispatchQueue.main.async {

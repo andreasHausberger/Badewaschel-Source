@@ -13,7 +13,7 @@ struct SpotListView: View {
     @State var showingRefresh: Bool
     var body: some View {
         List(spotModel.spots) { spot in
-            SpotRow(spot: spot, isFavorite: self.spotModel.isFavorite(id: spot.id))
+            SpotRow(spot: spot, isFavorite: self.spotModel.isFavorite(id: spot.id), model: self.spotModel)
         }.pullToRefresh(isShowing: $showingRefresh) {
             self.spotModel.manuallyRefreshSpots {
                 self.showingRefresh.toggle()
@@ -26,8 +26,9 @@ struct SpotListView: View {
 struct SpotRow: View {
     var spot: Spot
     var isFavorite: Bool
+    var model: SpotModel
     var body: some View {
-        NavigationLink(destination: SpotDetailView(spot: spot, isFavorite: self.isFavorite)) {
+        NavigationLink(destination: SpotDetailView(spot: spot, model: self.model, isFavorite: self.isFavorite)) {
             HStack {
                 Text(spot.properties.name + "\(self.isFavorite ? "❤️" : "")")
                 Spacer()

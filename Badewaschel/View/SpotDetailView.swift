@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SpotDetailView: View {
     var spot: Spot?
+    var model: SpotModel
     @State var isFavorite: Bool
     var body: some View {
         Form {
@@ -39,7 +40,13 @@ struct SpotDetailView: View {
             }
         }.navigationBarTitle(Text(spot?.properties.name ?? "Kein Name"))
             .navigationBarItems(trailing: Button(action: {
-                self.isFavorite.toggle()
+                if let actualSpot = self.spot {
+                    self.model.setFavorite(id: actualSpot.id)
+                    self.isFavorite.toggle()
+                }
+                else {
+                    print("Could not access Spot")
+                }
             }) {
                 return Image(systemName: self.isFavorite ? "heart.fill" : "heart").font(.title)
             })
@@ -57,6 +64,6 @@ struct SpotDetailView: View {
 
 struct SpotDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        SpotDetailView(spot: nil, isFavorite: false)
+        SpotDetailView(spot: nil, model: SpotModel(), isFavorite: false)
     }
 }
