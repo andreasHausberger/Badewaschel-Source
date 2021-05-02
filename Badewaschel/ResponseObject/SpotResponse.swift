@@ -44,7 +44,7 @@ struct SpotProperties: Codable {
     let weitereInfo: String
     let bezirk, badequalitaet: Int
     let untersuchungsdatum: String
-    let wassertemperatur, sichttiefe: Double
+    let wassertemperatur, sichttiefe: Double?
     let anzEcoli, anzEnterokokken, typ, seSdoRowid: Int
     let seAnnoCADData: JSONNull?
 

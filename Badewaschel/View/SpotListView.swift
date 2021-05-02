@@ -7,9 +7,13 @@
 //
 
 import SwiftUI
-
+import Combine
 struct SpotListView: View {
+    
+    var subs: Set<AnyCancellable> = []
+    
     @ObservedObject var spotModel: SpotModel
+    @State var currentSpots: [Spot] = []
     @State var showingRefresh: Bool
     var body: some View {
         List(spotModel.spots) { spot in
@@ -19,7 +23,11 @@ struct SpotListView: View {
                 self.showingRefresh.toggle()
                 print("Manually Refreshed Spots")
             }
-        }.animation(.easeInOut)
+        }
+        .animation(.easeInOut)
+        .onAppear {
+            self.spotModel.loadSpots()
+        }
     }
 }
 
@@ -32,7 +40,7 @@ struct SpotRow: View {
             HStack {
                 Text(spot.properties.name + "\(self.isFavorite ? "❤️" : "")")
                 Spacer()
-                Text("\(String.localizedStringWithFormat("%.1f", spot.properties.wassertemperatur))°C")
+                Text("\(String.localizedStringWithFormat("%.1f", spot.properties.wassertemperatur ?? 0.0))°C")
             }
         }
     }

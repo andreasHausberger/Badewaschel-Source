@@ -7,13 +7,21 @@
 //
 
 import Foundation
+import MapKit
+import Combine
+import Flyweight
 
 class SpotModel: ObservableObject {
     
+    var subs: Set<AnyCancellable> = []
+    public var sorting: Sorting = .Name
     private let networkManager = NetworkManager.shared()
     private let dataManager = DataManager()
+    private let locationManager = LocationManager()
+    
     @Published var spots = [Spot]()
     @Published var favorites = [String]()
+    @Published var options: UserOptions?
     
     init() {
         DispatchQueue.main.async {
@@ -25,6 +33,30 @@ class SpotModel: ObservableObject {
     func getSpotData(_ response: SpotResponse) {
         DispatchQueue.main.async {
             self.spots = response.features
+        }
+    }
+    
+    func loadSpots() {
+        do {
+            let publisher: AnyPublisher<SpotResponse, APIError> = try Network.get(urlString: Constants.spotURL)
+            publisher
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished: break
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }, receiveValue: { response in
+                    DispatchQueue.main.async {
+                        self.spots = response.features
+                        self.sortSpots(sorting: self.sorting)
+                    }
+                    
+                })
+                .store(in: &subs)
+        }
+        catch let error {
+            print("error: \(error)")
         }
     }
     
@@ -59,5 +91,57 @@ class SpotModel: ObservableObject {
         return self.favorites.contains(id)
     }
     
+    //MARK: Sorting
     
+    public func sortSpots(sorting: Sorting) {
+        switch sorting {
+        case .Name:
+            self.spots.sort(by: {
+                $0.properties.name < $1.properties.name
+            })
+            print("Name Sort")
+        case .Vicinity:
+            self.spots.sort(by: {
+                self.sortSpotsByVicinity(spot1: $0, spot2: $1)
+            })
+        case .Favorites:
+            self.spots.sort(by: {
+                self.sortSpotsByFavorites(spot1: $0, spot2: $1)
+            })
+        default:
+            print("default")
+        }
+    }
+    
+    private func sortSpotsByFavorites(spot1: Spot, spot2: Spot) -> Bool {
+        let spot1isFavorite = self.favorites.contains(spot1.id)
+        let spot2isFavorite = self.favorites.contains(spot2.id)
+        
+        if spot1isFavorite && !spot2isFavorite { return true }
+        if !spot1isFavorite && spot2isFavorite { return true }
+        
+        return spot1.properties.name < spot2.properties.name
+    }
+    
+    private func sortSpotsByVicinity(spot1: Spot, spot2: Spot) -> Bool {
+        if let userLocation = locationManager.userLocation {
+            let location1 = CLLocation(latitude: spot1.geometry.coordinates[1], longitude: spot2.geometry.coordinates[0])
+            let location2 = CLLocation(latitude: spot2.geometry.coordinates[1], longitude: spot2.geometry.coordinates[0])
+            
+            let distance1 = userLocation.distance(from: location1)
+            let distance2 = userLocation.distance(from: location2)
+            
+            return distance1 < distance2
+        }
+        return false
+    }
+    
+    public func getOptions() {
+        self.options = self.dataManager.getUserOptions()
+    }
+    
+    public func setOptions(options: UserOptions) {
+        self.dataManager.setUserOptions(options: options)
+        self.options = options
+    }
 }

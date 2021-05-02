@@ -13,7 +13,8 @@ class DataManager: ObservableObject {
     @Published var favorites = [String]()
     
     private final let favoritesKey = "favorites"
-    private final let sortingOptionsKey = "sortingOptions"
+    private final let poolSortingOptionsKey = "sortingOptions"
+    private final let spotSortingOptionsKey = "spotSortingOptions"
     private final let displayKey = "displayOptions"
     
     //MARK: Favorites
@@ -25,6 +26,9 @@ class DataManager: ObservableObject {
         return []
     }
     
+    
+    /// Sets the object with the gven ID as favorite
+    /// - Parameter id: ID of the object.
     func setFavorite(id: String) {
         if var existingFavorites = UserDefaults.standard.array(forKey: self.favoritesKey) as? [String] {
             NSLog("Found existing favorites array")
@@ -51,15 +55,18 @@ class DataManager: ObservableObject {
     func setUserOptions(options: UserOptions) {
         
         UserDefaults.standard.set(options.shouldDisplayCapacityLabel, forKey: self.displayKey)
-        UserDefaults.standard.set(options.sorting.rawValue, forKey: self.sortingOptionsKey)
+        UserDefaults.standard.set(options.poolSorting.rawValue, forKey: self.poolSortingOptionsKey)
     }
     
     func getUserOptions() -> UserOptions {
-        let options = UserOptions(sorting: .Name, shouldDisplayCapacityLabel: false)
+        let options = UserOptions(poolSorting: .Name, spotSorting: .Name, shouldDisplayCapacityLabel: false)
         
         if let display = UserDefaults.standard.object(forKey: self.displayKey) as? Bool,
-            let sorting = UserDefaults.standard.object(forKey: self.sortingOptionsKey) as? Int {
-            return UserOptions(sorting: sorting, shouldDisplayCapacityLabel: display)
+            let poolSorting = UserDefaults.standard.object(forKey: self.poolSortingOptionsKey) as? Int {
+            let spotSorting = UserDefaults.standard.object(forKey: self.spotSortingOptionsKey) as? Int ?? 0
+            
+            return UserOptions(poolSorting: poolSorting, spotSorting: spotSorting, shouldDisplayCapacityLabel: display)
+            
         }
         return options
     }

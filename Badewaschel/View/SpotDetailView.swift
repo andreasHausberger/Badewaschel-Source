@@ -18,7 +18,7 @@ struct SpotDetailView: View {
                 List {
                     InfoView(name: "Name", content: spot?.properties.name ?? "Kein Name")
                     InfoView(name: "Bezirk", content: spot?.properties.bezirk.description ?? "Keine Information")
-                    InfoView(name: "Wassertemperatur", content: spot?.properties.wassertemperatur.description ?? "0 °C")
+                    InfoView(name: "Wassertemperatur", content: spot?.properties.wassertemperatur?.description ?? "0 °C")
                     InfoView(name: "Sichttiefe", content: "\(spot?.properties.sichttiefe ?? 0) m")
                     InfoView(name: "Anzahl E.Coli *", content: spot?.properties.anzEcoli.description ?? "0")
                     InfoView(name: "Anzahl Enterokokken *", content: spot?.properties.anzEnterokokken.description ?? "0")

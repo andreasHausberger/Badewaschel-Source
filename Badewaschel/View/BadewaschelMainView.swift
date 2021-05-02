@@ -46,10 +46,10 @@ struct BadewaschelMainView: View {
                         .font(.title)
                 }.sheet(isPresented: $showingDetail) {
                     if self.idiom == .pad {
-                        PoolSettingsView(model: self.viewModel, options: self.viewModel.options!)
+                        SettingsView(poolModel: self.viewModel, spotModel: self.spotModel, options: self.viewModel.options!)
                     }
                     else {
-                        PoolSettingsView(model: self.viewModel, options: self.viewModel.options!)
+                        SettingsView(poolModel: self.viewModel, spotModel: self.spotModel, options: self.viewModel.options!)
                             .navigationBarTitle("Einstellungen")
                     }
                     

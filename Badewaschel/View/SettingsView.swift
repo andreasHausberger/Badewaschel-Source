@@ -8,22 +8,29 @@
 
 import SwiftUI
 
-struct PoolSettingsView: View {
+struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State var sorting: Sorting = .Name {
+    @State var poolSorting: Sorting = .Name {
         didSet {
-            self.model.sorting = sorting
+            self.poolModel.sorting = poolSorting
         }
     }
-    @ObservedObject var model: PoolModel
+    @State var spotSorting: Sorting = .Name {
+        didSet {
+            self.spotModel.sorting = spotSorting
+        }
+    }
+    
+    @ObservedObject var poolModel: PoolModel
+    @ObservedObject var spotModel: SpotModel
     
     @State var options: UserOptions
     
     @State var switchIsOn = false
     
     var favoritePools: [Pool] {
-        self.model.getFavorites()
+        self.poolModel.getFavorites()
     }
     var body: some View {
         VStack {
@@ -33,22 +40,34 @@ struct PoolSettingsView: View {
                     .fontWeight(.semibold)
                 Spacer()
                 Button("Speichern") {
-                    self.model.sortPools(sorting: self.options.sorting)
-                    self.model.setOptions(options: self.options)
+                    self.poolModel.sortPools(sorting: self.options.poolSorting)
+                    self.poolModel.setOptions(options: self.options)
+                    
+                    self.spotModel.sortSpots(sorting: self.options.spotSorting)
+                    self.spotModel.setOptions(options: self.options)
                     self.presentationMode.wrappedValue.dismiss()
                 }
             }
             .padding(.top, 15.0)
             .padding(.horizontal, 10.0)
             Form {
-                Section(header: Text("Sortierung")) {
-                    Picker("Nach", selection: $options.sorting) {
+                Section(header: Text("Sortierung der Schwimmbäder")) {
+                    Picker("Nach", selection: $options.poolSorting) {
                         Text("Name").tag(Sorting.Name)
                         Text("Favoriten").tag(Sorting.Favorites)
-                        if (self.model.locationIsAvailable) {
+                        if (self.poolModel.locationIsAvailable) {
                             Text("Nähe").tag(Sorting.Vicinity)
                         }
                         Text("Auslastung").tag(Sorting.Capacity)
+                    }.pickerStyle(SegmentedPickerStyle())
+                }
+                Section(header: Text("Sortierung der Badestellen")) {
+                    Picker("Nach", selection: $options.spotSorting) {
+                        Text("Name").tag(Sorting.Name)
+                        Text("Favoriten").tag(Sorting.Favorites)
+                        if (self.poolModel.locationIsAvailable) {
+                            Text("Nähe").tag(Sorting.Vicinity)
+                        }
                     }.pickerStyle(SegmentedPickerStyle())
                 }
                 Section(header: Text("Listen-Einstellungen")) {
@@ -65,11 +84,11 @@ struct PoolSettingsView: View {
                 }
                 
                 Section(header: Text("Ortung")) {
-                    Text("Die Ortungsdienste sind derzeit \(self.model.locationIsAvailable ? "aktiviert" : "deaktiviert")")
+                    Text("Die Ortungsdienste sind derzeit \(self.poolModel.locationIsAvailable ? "aktiviert" : "deaktiviert")")
                 }
                 
                 Section(header: Text("Letzte Aktualisierung")) {
-                    Text("Zeitpunkt der letzten Aktualisierung: \(self.model.lastUpdate)")
+                    Text("Zeitpunkt der letzten Aktualisierung: \(self.poolModel.lastUpdate)")
                 }
                 
                 Section(header: Text("Quellen")) {
@@ -102,7 +121,7 @@ struct PoolSettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        PoolSettingsView(model: PoolModel(), options: UserOptions(sorting: .Favorites, shouldDisplayCapacityLabel: true))
+        SettingsView(poolModel: PoolModel(), spotModel: SpotModel(), options: UserOptions(poolSorting: .Name, spotSorting: .Name, shouldDisplayCapacityLabel: false))
     }
 }
 

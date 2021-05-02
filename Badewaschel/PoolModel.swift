@@ -56,7 +56,7 @@ class PoolModel: ObservableObject {
         DispatchQueue.main.async {
             self.pools = response.features
             if self.options != nil {
-                self.sortPools(sorting: self.options!.sorting)
+                self.sortPools(sorting: self.options!.poolSorting)
             }
             else {
                 self.sortPools(sorting: .Name)
@@ -170,16 +170,19 @@ public enum Sorting: Int {
 }
 
 public struct UserOptions {
-    var sorting: Sorting
+    var poolSorting: Sorting
+    var spotSorting: Sorting
     var shouldDisplayCapacityLabel: Bool
     
-    init(sorting: Int, shouldDisplayCapacityLabel: Bool) {
-        self.sorting = Sorting(rawValue: sorting) ?? .Name
+    init(poolSorting: Int, spotSorting: Int, shouldDisplayCapacityLabel: Bool) {
+        self.poolSorting = Sorting(rawValue: poolSorting) ?? .Name
+        self.spotSorting = Sorting(rawValue: spotSorting) ?? .Name
         self.shouldDisplayCapacityLabel = shouldDisplayCapacityLabel
     }
     
-    init(sorting: Sorting, shouldDisplayCapacityLabel: Bool) {
-        self.sorting = sorting
+    init(poolSorting: Sorting, spotSorting: Sorting, shouldDisplayCapacityLabel: Bool) {
+        self.poolSorting = poolSorting
+        self.spotSorting = spotSorting
         self.shouldDisplayCapacityLabel = shouldDisplayCapacityLabel
     }
 }
