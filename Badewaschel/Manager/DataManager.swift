@@ -56,6 +56,7 @@ class DataManager: ObservableObject {
         
         UserDefaults.standard.set(options.shouldDisplayCapacityLabel, forKey: self.displayKey)
         UserDefaults.standard.set(options.poolSorting.rawValue, forKey: self.poolSortingOptionsKey)
+        UserDefaults.standard.set(options.spotSorting.rawValue, forKey: self.spotSortingOptionsKey)
     }
     
     func getUserOptions() -> UserOptions {

@@ -51,7 +51,6 @@ class SpotModel: ObservableObject {
                         self.spots = response.features
                         self.sortSpots(sorting: self.sorting)
                     }
-                    
                 })
                 .store(in: &subs)
         }
@@ -61,19 +60,14 @@ class SpotModel: ObservableObject {
     }
     
     func manuallyRefreshSpots(completion: @escaping () -> ()) {
-        self.networkManager.getAllSpots { response in
-            self.getSpotData(response)
-            completion()
-        }
+        self.loadSpots()
     }
     
     //MARK: Favorites
     
     public func getFavorites() -> [Spot] {
         let favoriteIds = self.dataManager.getFavoriteIDs()
-        
         let filteredPools = self.spots.filter( { favoriteIds.contains($0.id) })
-        
         return filteredPools
     }
     
@@ -140,8 +134,9 @@ class SpotModel: ObservableObject {
         self.options = self.dataManager.getUserOptions()
     }
     
-    public func setOptions(options: UserOptions) {
-        self.dataManager.setUserOptions(options: options)
-        self.options = options
+    public func updateOptions() {
+        if let sorting = self.options?.spotSorting {
+            self.sorting = sorting
+        }
     }
 }

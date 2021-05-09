@@ -19,13 +19,12 @@ struct SpotListView: View {
         List(spotModel.spots) { spot in
             SpotRow(spot: spot, isFavorite: self.spotModel.isFavorite(id: spot.id), model: self.spotModel)
         }.pullToRefresh(isShowing: $showingRefresh) {
-            self.spotModel.manuallyRefreshSpots {
-                self.showingRefresh.toggle()
-                print("Manually Refreshed Spots")
-            }
+            self.spotModel.loadSpots()
+            self.showingRefresh.toggle()
         }
         .animation(.easeInOut)
         .onAppear {
+            self.spotModel.updateOptions()
             self.spotModel.loadSpots()
         }
     }

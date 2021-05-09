@@ -155,11 +155,6 @@ class PoolModel: ObservableObject {
     public func getOptions() {
         self.options = self.dataManager.getUserOptions()
     }
-    
-    public func setOptions(options: UserOptions) {
-        self.dataManager.setUserOptions(options: options)
-        self.options = options
-    }
 }
 
 public enum Sorting: Int {

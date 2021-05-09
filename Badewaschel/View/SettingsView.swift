@@ -24,6 +24,7 @@ struct SettingsView: View {
     
     @ObservedObject var poolModel: PoolModel
     @ObservedObject var spotModel: SpotModel
+    @ObservedObject var dataManager: DataManager = DataManager()
     
     @State var options: UserOptions
     
@@ -41,10 +42,8 @@ struct SettingsView: View {
                 Spacer()
                 Button("Speichern") {
                     self.poolModel.sortPools(sorting: self.options.poolSorting)
-                    self.poolModel.setOptions(options: self.options)
-                    
                     self.spotModel.sortSpots(sorting: self.options.spotSorting)
-                    self.spotModel.setOptions(options: self.options)
+                    self.dataManager.setUserOptions(options: self.options)
                     self.presentationMode.wrappedValue.dismiss()
                 }
             }
@@ -113,10 +112,11 @@ struct SettingsView: View {
                     }
                 }
             }
+            .onAppear {
+                self.options =  self.dataManager.getUserOptions()
+            }
         }
-        
     }
-    
 }
 
 struct SettingsView_Previews: PreviewProvider {

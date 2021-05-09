@@ -37,7 +37,7 @@ struct BadewaschelMainView: View {
                 }
                 
             }
-            .navigationBarTitle(Text("BadeWaschel"))
+            .navigationBarTitle(Text("Badewaschel"))
             .navigationBarItems(
                 leading: Button(action: {
                     self.showingDetail.toggle()
