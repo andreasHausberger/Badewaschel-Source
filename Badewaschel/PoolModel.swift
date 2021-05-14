@@ -8,6 +8,8 @@
 
 import Foundation
 import CoreLocation
+import Flyweight
+import Combine
 
 class PoolModel: ObservableObject {
     
@@ -70,6 +72,19 @@ class PoolModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func getPoolPublisher() -> AnyPublisher<[Pool], APIError>? {
+        do {
+            let publisher: AnyPublisher<PoolResponse, APIError> = try Network.get(urlString: Constants.poolURL)
+            return publisher
+                .map { $0.features }
+                .eraseToAnyPublisher()
+        }
+        catch let error {
+            print("error: \(error)")
+        }
+        return nil
     }
     
     

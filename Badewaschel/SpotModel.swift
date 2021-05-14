@@ -47,9 +47,12 @@ class SpotModel: ObservableObject {
                         print(error.localizedDescription)
                     }
                 }, receiveValue: { response in
+
                     DispatchQueue.main.async {
+                        self.getOptions()
                         self.spots = response.features
-                        self.sortSpots(sorting: self.sorting)
+                        self.favorites = self.getFavorites().compactMap { $0.id }
+                        self.sortSpots(sorting: self.options?.spotSorting ?? Sorting.Name)
                     }
                 })
                 .store(in: &subs)
@@ -59,16 +62,31 @@ class SpotModel: ObservableObject {
         }
     }
     
+    func getSpotPublisher() -> AnyPublisher<[Spot], APIError>? {
+        do {
+            let publisher: AnyPublisher<SpotResponse, APIError> = try Network.get(urlString: Constants.spotURL)
+            
+            return publisher
+                .compactMap { $0.features }
+                .eraseToAnyPublisher()
+        }
+        catch let error {
+            print("error: \(error)")
+        }
+        return nil
+    }
+    
     func manuallyRefreshSpots(completion: @escaping () -> ()) {
         self.loadSpots()
+        completion()
     }
     
     //MARK: Favorites
     
     public func getFavorites() -> [Spot] {
         let favoriteIds = self.dataManager.getFavoriteIDs()
-        let filteredPools = self.spots.filter( { favoriteIds.contains($0.id) })
-        return filteredPools
+        let filteredSpots = self.spots.filter( { favoriteIds.contains($0.id) })
+        return filteredSpots
     }
     
     public func setFavorite(id: String) {
@@ -112,7 +130,7 @@ class SpotModel: ObservableObject {
         let spot2isFavorite = self.favorites.contains(spot2.id)
         
         if spot1isFavorite && !spot2isFavorite { return true }
-        if !spot1isFavorite && spot2isFavorite { return true }
+        if !spot1isFavorite && spot2isFavorite { return false }
         
         return spot1.properties.name < spot2.properties.name
     }
@@ -132,6 +150,7 @@ class SpotModel: ObservableObject {
     
     public func getOptions() {
         self.options = self.dataManager.getUserOptions()
+        
     }
     
     public func updateOptions() {
