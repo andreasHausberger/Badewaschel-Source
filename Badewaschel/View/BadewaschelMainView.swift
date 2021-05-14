@@ -30,7 +30,6 @@ struct BadewaschelMainView: View {
                         .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
                 }
                 else {
-                    
                     SpotListView(spotModel: spotModel, showingRefresh: self.showingRefresh)
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                     
@@ -69,8 +68,7 @@ struct BadewaschelMainView: View {
                     }
                     else {
                         NavigationView {
-                            MapView(latitude: 48.20, longitude: 16.37, name: "", allLocations: self.getAllAnnotations(), spanConstant: 0.25)
-                                .navigationBarTitle("Alle Schwimmbäder")
+                            MapSelectionView()
                         }
                     }
                 }
@@ -83,7 +81,7 @@ struct BadewaschelMainView: View {
         let pools = viewModel.pools
         
         let placemarks = pools.map( { pool -> MKPointAnnotation in
-            let poolAnnotation = PoolAnnotation()
+            let poolAnnotation = CustomAnnotation()
             poolAnnotation.coordinate = CLLocationCoordinate2D(latitude: pool.geometry.coordinates[1], longitude: pool.geometry.coordinates[0])
             poolAnnotation.title = pool.properties.name
             poolAnnotation.pool = pool

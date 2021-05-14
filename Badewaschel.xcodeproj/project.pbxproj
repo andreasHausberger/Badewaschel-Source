@@ -12,8 +12,8 @@
 		E11E59D524A8CEF4003C0719 /* PoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */; };
 		E11E59D724A8FF3D003C0719 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E59D624A8FF3D003C0719 /* MapView.swift */; };
 		E124AB5A24A912AD0099C9F9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E124AB5924A912AD0099C9F9 /* SettingsView.swift */; };
-		E12A6D3A24B20F8700651D5E /* PoolAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12A6D3924B20F8700651D5E /* PoolAnnotation.swift */; };
-		E12A6D3C24B211F700651D5E /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12A6D3B24B211F700651D5E /* ColorExtension.swift */; };
+		E12A6D3A24B20F8700651D5E /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12A6D3924B20F8700651D5E /* CustomAnnotation.swift */; };
+		E12A6D3C24B211F700651D5E /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12A6D3B24B211F700651D5E /* UIColorExtension.swift */; };
 		E12DBD5D24A60528009BC4C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD5C24A60528009BC4C7 /* AppDelegate.swift */; };
 		E12DBD5F24A60528009BC4C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD5E24A60528009BC4C7 /* SceneDelegate.swift */; };
 		E12DBD6224A60528009BC4C7 /* Badewaschel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD6024A60528009BC4C7 /* Badewaschel.xcdatamodeld */; };
@@ -24,6 +24,10 @@
 		E12DBD7424A6053F009BC4C7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD7324A6053F009BC4C7 /* NetworkManager.swift */; };
 		E12DBD7624A60612009BC4C7 /* PoolResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD7524A60612009BC4C7 /* PoolResponse.swift */; };
 		E1B50E53263DC5A700F2ADB2 /* Flyweight in Frameworks */ = {isa = PBXBuildFile; productRef = E1B50E52263DC5A700F2ADB2 /* Flyweight */; };
+		E1CB869A264EA4A2005436E6 /* MapSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CB8699264EA4A2005436E6 /* MapSelectionView.swift */; };
+		E1CB86A4264EB44B005436E6 /* Color+getColorForCapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CB86A3264EB44B005436E6 /* Color+getColorForCapacity.swift */; };
+		E1CDA52E264D1F1E003B2351 /* Date+dateFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA52D264D1F1E003B2351 /* Date+dateFromString.swift */; };
+		E1CDA536264D293E003B2351 /* StoragePublisher in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDA535264D293E003B2351 /* StoragePublisher */; };
 		E1E4D50424C988D5001BB063 /* SpotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50324C988D5001BB063 /* SpotResponse.swift */; };
 		E1E4D50724C98A85001BB063 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50624C98A85001BB063 /* Constants.swift */; };
 		E1E4D50924C98B86001BB063 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50824C98B86001BB063 /* Response.swift */; };
@@ -45,8 +49,8 @@
 		E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolDetailView.swift; sourceTree = "<group>"; };
 		E11E59D624A8FF3D003C0719 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E124AB5924A912AD0099C9F9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		E12A6D3924B20F8700651D5E /* PoolAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PoolAnnotation.swift; path = Badewaschel/View/PoolAnnotation.swift; sourceTree = SOURCE_ROOT; };
-		E12A6D3B24B211F700651D5E /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		E12A6D3924B20F8700651D5E /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomAnnotation.swift; path = Badewaschel/View/CustomAnnotation.swift; sourceTree = SOURCE_ROOT; };
+		E12A6D3B24B211F700651D5E /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		E12DBD5924A60528009BC4C7 /* Badewaschel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Badewaschel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E12DBD5C24A60528009BC4C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E12DBD5E24A60528009BC4C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +62,9 @@
 		E12DBD6D24A6052A009BC4C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E12DBD7324A6053F009BC4C7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E12DBD7524A60612009BC4C7 /* PoolResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolResponse.swift; sourceTree = "<group>"; };
+		E1CB8699264EA4A2005436E6 /* MapSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectionView.swift; sourceTree = "<group>"; };
+		E1CB86A3264EB44B005436E6 /* Color+getColorForCapacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+getColorForCapacity.swift"; sourceTree = "<group>"; };
+		E1CDA52D264D1F1E003B2351 /* Date+dateFromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+dateFromString.swift"; sourceTree = "<group>"; };
 		E1CDD12524B7654F00B7E6D5 /* Badewaschel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Badewaschel.entitlements; sourceTree = "<group>"; };
 		E1E4D50324C988D5001BB063 /* SpotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotResponse.swift; sourceTree = "<group>"; };
 		E1E4D50624C98A85001BB063 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -78,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1B50E53263DC5A700F2ADB2 /* Flyweight in Frameworks */,
+				E1CDA536264D293E003B2351 /* StoragePublisher in Frameworks */,
 				41F27D236E4CF6AB1767C459 /* Pods_Badewaschel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,7 +167,7 @@
 		E1B50E56263DC6C700F2ADB2 /* Pool */ = {
 			isa = PBXGroup;
 			children = (
-				E12A6D3924B20F8700651D5E /* PoolAnnotation.swift */,
+				E12A6D3924B20F8700651D5E /* CustomAnnotation.swift */,
 				E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */,
 				E1E4D51424C9B3EC001BB063 /* PoolListView.swift */,
 			);
@@ -172,6 +180,7 @@
 				E12DBD6324A60528009BC4C7 /* BadewaschelMainView.swift */,
 				E11E59D624A8FF3D003C0719 /* MapView.swift */,
 				E124AB5924A912AD0099C9F9 /* SettingsView.swift */,
+				E1CB8699264EA4A2005436E6 /* MapSelectionView.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -201,7 +210,9 @@
 			isa = PBXGroup;
 			children = (
 				E1F1B5AE24AF1C0800438918 /* ViewExtension.swift */,
-				E12A6D3B24B211F700651D5E /* ColorExtension.swift */,
+				E12A6D3B24B211F700651D5E /* UIColorExtension.swift */,
+				E1CDA52D264D1F1E003B2351 /* Date+dateFromString.swift */,
+				E1CB86A3264EB44B005436E6 /* Color+getColorForCapacity.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -247,6 +258,7 @@
 			name = Badewaschel;
 			packageProductDependencies = (
 				E1B50E52263DC5A700F2ADB2 /* Flyweight */,
+				E1CDA535264D293E003B2351 /* StoragePublisher */,
 			);
 			productName = Badewaschel;
 			productReference = E12DBD5924A60528009BC4C7 /* Badewaschel.app */;
@@ -278,6 +290,7 @@
 			mainGroup = E12DBD5024A60528009BC4C7;
 			packageReferences = (
 				E1B50E51263DC5A700F2ADB2 /* XCRemoteSwiftPackageReference "Flyweight" */,
+				E1CDA534264D293E003B2351 /* XCRemoteSwiftPackageReference "StoragePublisher" */,
 			);
 			productRefGroup = E12DBD5A24A60528009BC4C7 /* Products */;
 			projectDirPath = "";
@@ -361,15 +374,18 @@
 				E12DBD5F24A60528009BC4C7 /* SceneDelegate.swift in Sources */,
 				E1F1B5A924ADCA2900438918 /* LocationManager.swift in Sources */,
 				E12DBD7424A6053F009BC4C7 /* NetworkManager.swift in Sources */,
-				E12A6D3A24B20F8700651D5E /* PoolAnnotation.swift in Sources */,
+				E12A6D3A24B20F8700651D5E /* CustomAnnotation.swift in Sources */,
+				E1CB86A4264EB44B005436E6 /* Color+getColorForCapacity.swift in Sources */,
+				E1CB869A264EA4A2005436E6 /* MapSelectionView.swift in Sources */,
 				E12DBD6424A60528009BC4C7 /* BadewaschelMainView.swift in Sources */,
 				E124AB5A24A912AD0099C9F9 /* SettingsView.swift in Sources */,
-				E12A6D3C24B211F700651D5E /* ColorExtension.swift in Sources */,
+				E12A6D3C24B211F700651D5E /* UIColorExtension.swift in Sources */,
 				E1187A4B24A79E860081BB28 /* PoolModel.swift in Sources */,
 				E12DBD6224A60528009BC4C7 /* Badewaschel.xcdatamodeld in Sources */,
 				E1E4D50F24C992F5001BB063 /* DataObject.swift in Sources */,
 				E11E59D724A8FF3D003C0719 /* MapView.swift in Sources */,
 				E11E59D524A8CEF4003C0719 /* PoolDetailView.swift in Sources */,
+				E1CDA52E264D1F1E003B2351 /* Date+dateFromString.swift in Sources */,
 				E1F1B5AF24AF1C0800438918 /* ViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,17 +527,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Badewaschel/Badewaschel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Badewaschel/Preview Content\"";
 				DEVELOPMENT_TEAM = ZR2MYEGU5H;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Badewaschel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = hausb.Badewaschel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -537,17 +553,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Badewaschel/Badewaschel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Badewaschel/Preview Content\"";
 				DEVELOPMENT_TEAM = ZR2MYEGU5H;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Badewaschel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = hausb.Badewaschel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -588,6 +604,14 @@
 				minimumVersion = 1.0.1;
 			};
 		};
+		E1CDA534264D293E003B2351 /* XCRemoteSwiftPackageReference "StoragePublisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/andreas/Developer/iOS/StoragePublisher/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -595,6 +619,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E1B50E51263DC5A700F2ADB2 /* XCRemoteSwiftPackageReference "Flyweight" */;
 			productName = Flyweight;
+		};
+		E1CDA535264D293E003B2351 /* StoragePublisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E1CDA534264D293E003B2351 /* XCRemoteSwiftPackageReference "StoragePublisher" */;
+			productName = StoragePublisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 

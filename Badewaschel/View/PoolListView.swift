@@ -45,9 +45,7 @@ struct PoolRow: View {
             if (self.shouldDisplayCapacityLabel != nil && self.shouldDisplayCapacityLabel!) {
                 Text(pool.properties.auslastungAmpelKatTxt0 ?? "").font(.footnote)
             }
-            
         }
-        
     }
 }
 

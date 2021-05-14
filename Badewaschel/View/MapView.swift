@@ -18,12 +18,13 @@ struct MapView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> MKMapView {
         let view = MKMapView(frame: .zero)
-        view.register(PoolAnnotation.self, forAnnotationViewWithReuseIdentifier: "Annotation")
+        view.register(CustomAnnotation.self, forAnnotationViewWithReuseIdentifier: "Annotation")
         view.delegate = self.delegate
         return view
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        uiView.removeAnnotations(self.allLocations ?? [])
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let span = MKCoordinateSpan(latitudeDelta: spanConstant, longitudeDelta: spanConstant)
         
@@ -59,7 +60,7 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Annotation")
-        guard let poolAnnotation = annotation as? PoolAnnotation else { return nil }
+        guard let poolAnnotation = annotation as? CustomAnnotation else { return nil }
         pin.canShowCallout = true
         pin.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         
@@ -69,7 +70,7 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("Tapped \(control)")
-        if let poolAnnotation = view.annotation as? PoolAnnotation {
+        if let poolAnnotation = view.annotation as? CustomAnnotation {
             let address = poolAnnotation.pool?.properties.adresse
             
             let cleanAddress = address?.split(separator: ",", maxSplits: 1)[1].description ?? ""

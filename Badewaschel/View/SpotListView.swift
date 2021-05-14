@@ -37,7 +37,7 @@ struct SpotRow: View {
     var body: some View {
         NavigationLink(destination: SpotDetailView(spot: spot, model: self.model, isFavorite: self.isFavorite)) {
             HStack {
-                Text(spot.properties.name + "\(self.isFavorite ? "❤️" : "")")
+                Text(spot.properties.name + " \(self.isFavorite ? "❤️" : "")")
                 Spacer()
                 Text("\(String.localizedStringWithFormat("%.1f", spot.properties.wassertemperatur ?? 0.0))°C")
             }

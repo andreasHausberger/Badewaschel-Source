@@ -12,8 +12,15 @@ struct SpotDetailView: View {
     var spot: Spot?
     var model: SpotModel
     @State var isFavorite: Bool
+    @State var displayWarning: Bool = false
     var body: some View {
         Form {
+            if displayWarning {
+                Section(header: Text("Warnung")) {
+                    Text(Constants.warningText)
+                        .foregroundColor(.red)
+                }
+            }
             Section(header: Text("Informationen"), footer: Text("* Messung pro 100 ml")) {
                 List {
                     InfoView(name: "Name", content: spot?.properties.name ?? "Kein Name")
@@ -50,6 +57,11 @@ struct SpotDetailView: View {
             }) {
                 return Image(systemName: self.isFavorite ? "heart.fill" : "heart").font(.title)
             })
+        .onAppear {
+            if getDaysSinceLastMeasurement() > 30.0 {
+                displayWarning = true
+            }
+        }
     }
     
     func createMapsUrl() -> String {
@@ -57,6 +69,15 @@ struct SpotDetailView: View {
         let longitude = spot?.geometry.coordinates[0] ?? 0.0
         let mapsLink = "http://maps.apple.com?daddr=\(latitude),\(longitude)"
         return mapsLink
+    }
+    
+    func getDaysSinceLastMeasurement() -> Double {
+        if let date = Date.dateFromString(dateString: spot?.properties.untersuchungsdatum ?? "", formatString: "yyyy-MM-ddZ") {
+            let distanceToNowInSeconds = date.distance(to: Date())
+            let distanceInDays = distanceToNowInSeconds / 3600 / 24
+            return floor(distanceInDays)
+        }
+        return 0
     }
 }
 
