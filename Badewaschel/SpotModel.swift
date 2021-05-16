@@ -47,7 +47,6 @@ class SpotModel: ObservableObject {
                         print(error.localizedDescription)
                     }
                 }, receiveValue: { response in
-
                     DispatchQueue.main.async {
                         self.getOptions()
                         self.spots = response.features
@@ -137,7 +136,7 @@ class SpotModel: ObservableObject {
     
     private func sortSpotsByVicinity(spot1: Spot, spot2: Spot) -> Bool {
         if let userLocation = locationManager.userLocation {
-            let location1 = CLLocation(latitude: spot1.geometry.coordinates[1], longitude: spot2.geometry.coordinates[0])
+            let location1 = CLLocation(latitude: spot1.geometry.coordinates[1], longitude: spot1.geometry.coordinates[0])
             let location2 = CLLocation(latitude: spot2.geometry.coordinates[1], longitude: spot2.geometry.coordinates[0])
             
             let distance1 = userLocation.distance(from: location1)

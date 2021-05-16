@@ -23,7 +23,7 @@
 		E12DBD6C24A6052A009BC4C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E12DBD6A24A6052A009BC4C7 /* LaunchScreen.storyboard */; };
 		E12DBD7424A6053F009BC4C7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD7324A6053F009BC4C7 /* NetworkManager.swift */; };
 		E12DBD7624A60612009BC4C7 /* PoolResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD7524A60612009BC4C7 /* PoolResponse.swift */; };
-		E1B50E53263DC5A700F2ADB2 /* Flyweight in Frameworks */ = {isa = PBXBuildFile; productRef = E1B50E52263DC5A700F2ADB2 /* Flyweight */; };
+		E18F23BB264EEB720010EC96 /* Flyweight in Frameworks */ = {isa = PBXBuildFile; productRef = E18F23BA264EEB720010EC96 /* Flyweight */; };
 		E1CB869A264EA4A2005436E6 /* MapSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CB8699264EA4A2005436E6 /* MapSelectionView.swift */; };
 		E1CB86A4264EB44B005436E6 /* Color+getColorForCapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CB86A3264EB44B005436E6 /* Color+getColorForCapacity.swift */; };
 		E1CDA52E264D1F1E003B2351 /* Date+dateFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA52D264D1F1E003B2351 /* Date+dateFromString.swift */; };
@@ -84,8 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1B50E53263DC5A700F2ADB2 /* Flyweight in Frameworks */,
 				E1CDA536264D293E003B2351 /* StoragePublisher in Frameworks */,
+				E18F23BB264EEB720010EC96 /* Flyweight in Frameworks */,
 				41F27D236E4CF6AB1767C459 /* Pods_Badewaschel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,8 +257,8 @@
 			);
 			name = Badewaschel;
 			packageProductDependencies = (
-				E1B50E52263DC5A700F2ADB2 /* Flyweight */,
 				E1CDA535264D293E003B2351 /* StoragePublisher */,
+				E18F23BA264EEB720010EC96 /* Flyweight */,
 			);
 			productName = Badewaschel;
 			productReference = E12DBD5924A60528009BC4C7 /* Badewaschel.app */;
@@ -289,8 +289,8 @@
 			);
 			mainGroup = E12DBD5024A60528009BC4C7;
 			packageReferences = (
-				E1B50E51263DC5A700F2ADB2 /* XCRemoteSwiftPackageReference "Flyweight" */,
 				E1CDA534264D293E003B2351 /* XCRemoteSwiftPackageReference "StoragePublisher" */,
+				E18F23B9264EEB720010EC96 /* XCRemoteSwiftPackageReference "Flyweight" */,
 			);
 			productRefGroup = E12DBD5A24A60528009BC4C7 /* Products */;
 			projectDirPath = "";
@@ -527,7 +527,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Badewaschel/Badewaschel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Badewaschel/Preview Content\"";
 				DEVELOPMENT_TEAM = ZR2MYEGU5H;
 				ENABLE_PREVIEWS = YES;
@@ -553,7 +553,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Badewaschel/Badewaschel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Badewaschel/Preview Content\"";
 				DEVELOPMENT_TEAM = ZR2MYEGU5H;
 				ENABLE_PREVIEWS = YES;
@@ -596,12 +596,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E1B50E51263DC5A700F2ADB2 /* XCRemoteSwiftPackageReference "Flyweight" */ = {
+		E18F23B9264EEB720010EC96 /* XCRemoteSwiftPackageReference "Flyweight" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/andreasHausberger/Flyweight.git";
+			repositoryURL = "file:///Users/andreas/Developer/iOS/Flyweight";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.1;
+				minimumVersion = 1.0.2;
 			};
 		};
 		E1CDA534264D293E003B2351 /* XCRemoteSwiftPackageReference "StoragePublisher" */ = {
@@ -615,9 +615,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E1B50E52263DC5A700F2ADB2 /* Flyweight */ = {
+		E18F23BA264EEB720010EC96 /* Flyweight */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E1B50E51263DC5A700F2ADB2 /* XCRemoteSwiftPackageReference "Flyweight" */;
+			package = E18F23B9264EEB720010EC96 /* XCRemoteSwiftPackageReference "Flyweight" */;
 			productName = Flyweight;
 		};
 		E1CDA535264D293E003B2351 /* StoragePublisher */ = {
