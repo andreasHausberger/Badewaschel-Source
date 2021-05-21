@@ -31,20 +31,27 @@ struct PoolRow: View {
     var isFavorite: Bool?
     var shouldDisplayCapacityLabel: Bool?
     var body: some View {
-        VStack {
-            HStack {
-                Text(pool.properties.name).multilineTextAlignment(.leading).lineLimit(1)
-                if self.isFavorite != nil && self.isFavorite! {
-                    Text("❤️")
+        HStack {
+            VStack {
+                HStack {
+                    Text(pool.properties.name).multilineTextAlignment(.leading).lineLimit(1)
+                    if self.isFavorite != nil && self.isFavorite! {
+                        Text("❤️")
+                    }
+                    Spacer()
                 }
-                
-                Spacer()
-                AuslastungsAmpel(auslastungInt: pool.properties.auslastungAmpelKategorie0)
-                    .frame(width: 32, height: 32, alignment: .trailing)
+                if (self.shouldDisplayCapacityLabel != nil && self.shouldDisplayCapacityLabel!) {
+                    HStack {
+                        Text(pool.properties.auslastungAmpelKatTxt0 ?? "")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                }
             }
-            if (self.shouldDisplayCapacityLabel != nil && self.shouldDisplayCapacityLabel!) {
-                Text(pool.properties.auslastungAmpelKatTxt0 ?? "").font(.footnote)
-            }
+            Spacer()
+            AuslastungsAmpel(auslastungInt: pool.properties.auslastungAmpelKategorie0)
+                .frame(width: 32, height: 32, alignment: .trailing)
         }
     }
 }

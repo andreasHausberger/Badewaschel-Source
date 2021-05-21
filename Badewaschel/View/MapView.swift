@@ -45,8 +45,6 @@ struct MapView: UIViewRepresentable {
         uiView.showsUserLocation = true
         
     }
-    
-    
     var spanConstant: Double = 0.0025
 }
 
@@ -94,6 +92,4 @@ struct MapsNavigationLink: View {
             Text("Hrmpf")
         }
     }
-    
-    
 }
