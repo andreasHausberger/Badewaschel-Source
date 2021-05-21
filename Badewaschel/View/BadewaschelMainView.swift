@@ -13,10 +13,12 @@ import SwiftUIRefresh
 struct BadewaschelMainView: View {
     @ObservedObject var viewModel = PoolModel()
     @ObservedObject var spotModel = SpotModel()
+    
     @State var showingDetail = false
     @State var showingRefresh = false
     @State var showingMap = false
     @State var listShown: ShownList = .Pools
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -32,9 +34,7 @@ struct BadewaschelMainView: View {
                 else {
                     SpotListView(spotModel: spotModel, showingRefresh: self.showingRefresh)
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                    
                 }
-                
             }
             .navigationBarTitle(Text("Badewaschel"))
             .navigationBarItems(
@@ -51,7 +51,6 @@ struct BadewaschelMainView: View {
                         SettingsView(poolModel: self.viewModel, spotModel: self.spotModel, options: self.viewModel.options!)
                             .navigationBarTitle("Einstellungen")
                     }
-                    
                 },
                 trailing:
                 Button(action: {

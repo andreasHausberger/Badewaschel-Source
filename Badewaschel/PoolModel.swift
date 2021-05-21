@@ -13,13 +13,13 @@ import Combine
 
 class PoolModel: ObservableObject {
     
+    var subs: Set<AnyCancellable> = []
     public var sorting: Sorting = .Name 
     private let networkManager = NetworkManager.shared()
     private var locationManager = LocationManager()
     private var dataManager = DataManager()
     
     @Published var pools = [Pool]()
-    
     @Published var lastUpdate = ""
     
     public var location: CLLocation? {
@@ -45,14 +45,30 @@ class PoolModel: ObservableObject {
     - parameter completion: Void Function that takes no arguments.Should be used for UI completion, e.g. disappearing a loading spinner.
     */
     func manuallyRefreshObjects(completion: @escaping () -> ()) {
-        self.networkManager.getAllPools { response in
-            self.getPoolData(response)
-            completion()
-        }
-
+        self.loadPoolData()
+        completion()
     }
     
     //MARK: Pool Data & Sorting
+    
+    func loadPoolData() {
+        self.getPoolPublisher()?
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    print("error: \(error)")
+                }
+            }, receiveValue: { pools in
+                DispatchQueue.main.async {
+                    self.pools = pools
+                    self.getOptions()
+                    self.sorting = self.options?.poolSorting ?? .Name
+                    self.sortPools(sorting: self.sorting)
+                }
+            })
+            .store(in: &subs)
+    }
     
     func getPoolData(_ response:PoolResponse) {
         DispatchQueue.main.async {
