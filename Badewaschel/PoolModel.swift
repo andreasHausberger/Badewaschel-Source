@@ -35,7 +35,7 @@ class PoolModel: ObservableObject {
     @Published var options: UserOptions?
     
     init() {
-        self.networkManager.getAllPools(completion: self.getPoolData(_:))
+        self.loadPoolData()
         self.favorites = self.dataManager.getFavoriteIDs()
         self.options = self.dataManager.getUserOptions()
     }
@@ -51,7 +51,8 @@ class PoolModel: ObservableObject {
     
     //MARK: Pool Data & Sorting
     
-    func loadPoolData() {
+    ///Updates this model's pools. Uses Combine
+    public func loadPoolData() {
         self.getPoolPublisher()?
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -70,25 +71,25 @@ class PoolModel: ObservableObject {
             .store(in: &subs)
     }
     
-    func getPoolData(_ response:PoolResponse) {
-        DispatchQueue.main.async {
-            self.pools = response.features
-            if self.options != nil {
-                self.sortPools(sorting: self.options!.poolSorting)
-            }
-            else {
-                self.sortPools(sorting: .Name)
-            }
-            let lastUpdateStrings = self.pools.map( { $0.properties.timestampModifiedFormat })
-            
-            for string in lastUpdateStrings {
-                if let actualString = string {
-                    self.lastUpdate = actualString
-                    return
-                }
-            }
-        }
-    }
+//    func getPoolData(_ response:PoolResponse) {
+//        DispatchQueue.main.async {
+//            self.pools = response.features
+//            if self.options != nil {
+//                self.sortPools(sorting: self.options!.poolSorting)
+//            }
+//            else {
+//                self.sortPools(sorting: .Name)
+//            }
+//            let lastUpdateStrings = self.pools.map( { $0.properties.timestampModifiedFormat })
+//
+//            for string in lastUpdateStrings {
+//                if let actualString = string {
+//                    self.lastUpdate = actualString
+//                    return
+//                }
+//            }
+//        }
+//    }
     
     func getPoolPublisher() -> AnyPublisher<[Pool], APIError>? {
         do {

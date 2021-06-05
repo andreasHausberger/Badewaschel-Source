@@ -13,8 +13,17 @@ struct PoolListView: View {
     @State var showingRefresh: Bool
     var body: some View {
         List(viewModel.pools, id: \.id) { pool in
-            NavigationLink(destination: PoolDetailView(pool: pool, model: self.viewModel, isFavorite: self.viewModel.isFavorite(id: pool.id))) {
-                PoolRow(pool: pool, isFavorite: self.viewModel.isFavorite(id: pool.id), shouldDisplayCapacityLabel: self.viewModel.options?.shouldDisplayCapacityLabel)
+            NavigationLink(destination:
+                            PoolDetailView(pool: pool,
+                                           model: self.viewModel,
+                                           isFavorite: self.viewModel.isFavorite(id: pool.id)
+                            )
+            )
+            {
+                PoolRow(pool: pool,
+                        isFavorite: self.viewModel.isFavorite(id: pool.id),
+                        shouldDisplayCapacityLabel: self.viewModel.options?.shouldDisplayCapacityLabel
+                )
             }
         }
         .pullToRefresh(isShowing: $showingRefresh) {
@@ -23,6 +32,9 @@ struct PoolListView: View {
             }
         }
         .animation(.easeInOut)
+        .onAppear {
+            self.viewModel.loadPoolData()
+        }
     }
 }
 
@@ -53,6 +65,7 @@ struct PoolRow: View {
             AuslastungsAmpel(auslastungInt: pool.properties.auslastungAmpelKategorie0)
                 .frame(width: 32, height: 32, alignment: .trailing)
         }
+        .accessibility(label: Text("\(pool.properties.name). Aktuelle Auslastung: \(pool.properties.auslastungAmpelKatTxt0 ?? "Keine Information")"))
     }
 }
 
