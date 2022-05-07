@@ -26,12 +26,11 @@ struct PoolListView: View {
                 )
             }
         }
-        .pullToRefresh(isShowing: $showingRefresh) {
+        .refreshable {
             self.viewModel.manuallyRefreshObjects {
                 self.showingRefresh = false
             }
         }
-        .animation(.easeInOut)
         .onAppear {
             self.viewModel.loadPoolData()
         }

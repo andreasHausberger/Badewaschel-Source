@@ -23,6 +23,7 @@
 		E12DBD6C24A6052A009BC4C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E12DBD6A24A6052A009BC4C7 /* LaunchScreen.storyboard */; };
 		E12DBD7424A6053F009BC4C7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD7324A6053F009BC4C7 /* NetworkManager.swift */; };
 		E12DBD7624A60612009BC4C7 /* PoolResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12DBD7524A60612009BC4C7 /* PoolResponse.swift */; };
+		E18C552D28268CED00E970E9 /* QuickMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18C552C28268CED00E970E9 /* QuickMenuView.swift */; };
 		E18F23BB264EEB720010EC96 /* Flyweight in Frameworks */ = {isa = PBXBuildFile; productRef = E18F23BA264EEB720010EC96 /* Flyweight */; };
 		E1CB869A264EA4A2005436E6 /* MapSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CB8699264EA4A2005436E6 /* MapSelectionView.swift */; };
 		E1CB86A4264EB44B005436E6 /* Color+getColorForCapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CB86A3264EB44B005436E6 /* Color+getColorForCapacity.swift */; };
@@ -60,6 +61,7 @@
 		E12DBD6D24A6052A009BC4C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E12DBD7324A6053F009BC4C7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E12DBD7524A60612009BC4C7 /* PoolResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolResponse.swift; sourceTree = "<group>"; };
+		E18C552C28268CED00E970E9 /* QuickMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMenuView.swift; sourceTree = "<group>"; };
 		E18F23BC26510BD40010EC96 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E18F23BD26510BDB0010EC96 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1CB8699264EA4A2005436E6 /* MapSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectionView.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				E11E59D624A8FF3D003C0719 /* MapView.swift */,
 				E124AB5924A912AD0099C9F9 /* SettingsView.swift */,
 				E1CB8699264EA4A2005436E6 /* MapSelectionView.swift */,
+				E18C552C28268CED00E970E9 /* QuickMenuView.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				E12DBD7624A60612009BC4C7 /* PoolResponse.swift in Sources */,
 				E1E4D51724C9C29D001BB063 /* SpotDetailView.swift in Sources */,
 				E1E4D51124C9AF74001BB063 /* SpotModel.swift in Sources */,
+				E18C552D28268CED00E970E9 /* QuickMenuView.swift in Sources */,
 				E1E4D50724C98A85001BB063 /* Constants.swift in Sources */,
 				E1F1B5AB24ADDB3400438918 /* DataManager.swift in Sources */,
 				E1E4D50424C988D5001BB063 /* SpotResponse.swift in Sources */,

@@ -20,7 +20,7 @@ struct BadewaschelMainView: View {
         case settings, map
     }
     
-    @ObservedObject var viewModel = PoolModel()
+    @ObservedObject var poolModel = PoolModel()
     @ObservedObject var spotModel = SpotModel()
     
     @State var showingDetail = false
@@ -32,22 +32,17 @@ struct BadewaschelMainView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Picker("Anzeige", selection: $listShown) {
-                    Text("Schwimmbäder").tag(ShownList.Pools)
-                    Text("Badestellen").tag(ShownList.Spots)
-                }.pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal, 8.0)
-                if (listShown == .Pools) {
-                    PoolListView(viewModel: viewModel, showingRefresh: self.showingRefresh)
+            ZStack {
+                if listShown == .Pools {
+                    PoolListView(viewModel: poolModel, showingRefresh: self.showingRefresh)
                         .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
                 }
                 else {
                     SpotListView(spotModel: spotModel, showingRefresh: self.showingRefresh)
-                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))) 
                 }
             }
-            .navigationBarTitle(Text("Badewaschel"))
+            .navigationBarTitle(listShown.rawValue)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
@@ -57,72 +52,26 @@ struct BadewaschelMainView: View {
                     }
                 }
                 
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
                         self.activeSheet = .map
                     } label: {
                         Image(systemName: "map")
                     }
+                    QuickMenuView(poolModel: poolModel, spotModel: spotModel, listShown: $listShown)
                 }
             }
             .sheet(item: $activeSheet) { sheet in
                 switch sheet {
                 case .settings:
-                    SettingsView(poolModel: self.viewModel, spotModel: self.spotModel, options: self.viewModel.options!)
+                    SettingsView(poolModel: self.poolModel, spotModel: self.spotModel, options: self.poolModel.options!)
                 case .map:
                     MapSelectionView()
 
                 }
             }
-//            .navigationBarItems(
-//                leading: Button(action: {
-//                    self.showingDetail.toggle()
-//                }) {
-//                    Image.init(systemName: "gear")
-//                }.sheet(isPresented: $showingDetail) {
-//                    if self.idiom == .pad {
-//                        SettingsView(poolModel: self.viewModel, spotModel: self.spotModel, options: self.viewModel.options!)
-//                    }
-//                    else {
-//                        SettingsView(poolModel: self.viewModel, spotModel: self.spotModel, options: self.viewModel.options!)
-//                            .navigationBarTitle("Einstellungen")
-//                    }
-//                },
-//                trailing:
-//                Button(action: {
-//                    self.showingMap.toggle()
-//                }) {
-//                    Image(systemName: "map")
-//                }.sheet(isPresented: $showingMap) {
-//                    if self.idiom == .pad {
-//                        VStack {
-//                            Spacer()
-//                            Text("Alle Schwimmbäder").font(.largeTitle)
-//                            MapView(latitude: 48.20, longitude: 16.37, name: "", allLocations: self.getAllAnnotations(), spanConstant: 0.25)
-//                        }
-//                    }
-//                    else {
-//                        NavigationView {
-//                            MapSelectionView()
-//                        }
-//                    }
-//                }
-//            )
             Text("Wähle ein Schwimmbad aus der Liste!")
         }
-    }
-    
-    func getAllAnnotations() -> [MKPointAnnotation] {
-        let pools = viewModel.pools
-        
-        let placemarks = pools.map( { pool -> MKPointAnnotation in
-            let poolAnnotation = CustomAnnotation()
-            poolAnnotation.coordinate = CLLocationCoordinate2D(latitude: pool.geometry.coordinates[1], longitude: pool.geometry.coordinates[0])
-            poolAnnotation.title = pool.properties.name
-            poolAnnotation.pool = pool
-            return poolAnnotation
-        })
-        return placemarks
     }
 }
 
@@ -144,7 +93,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-enum ShownList {
-    case Pools
-    case Spots
+enum ShownList: String {
+    case Pools = "Schwimmbäder"
+    case Spots = "Badestellen"
 }
