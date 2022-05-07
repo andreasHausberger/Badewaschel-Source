@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		41F27D236E4CF6AB1767C459 /* Pods_Badewaschel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43175DA85130652A4A19805 /* Pods_Badewaschel.framework */; };
 		E1187A4B24A79E860081BB28 /* PoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1187A4A24A79E860081BB28 /* PoolModel.swift */; };
 		E11E59D524A8CEF4003C0719 /* PoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */; };
 		E11E59D724A8FF3D003C0719 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E59D624A8FF3D003C0719 /* MapView.swift */; };
@@ -42,9 +41,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A738547C13E933E555FEAED6 /* Pods-Badewaschel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Badewaschel.release.xcconfig"; path = "Target Support Files/Pods-Badewaschel/Pods-Badewaschel.release.xcconfig"; sourceTree = "<group>"; };
-		B43175DA85130652A4A19805 /* Pods_Badewaschel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Badewaschel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB0ACF41FE8DFB763ADF3D60 /* Pods-Badewaschel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Badewaschel.debug.xcconfig"; path = "Target Support Files/Pods-Badewaschel/Pods-Badewaschel.debug.xcconfig"; sourceTree = "<group>"; };
 		E1187A4A24A79E860081BB28 /* PoolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolModel.swift; sourceTree = "<group>"; };
 		E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolDetailView.swift; sourceTree = "<group>"; };
 		E11E59D624A8FF3D003C0719 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -87,7 +83,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E18F23BB264EEB720010EC96 /* Flyweight in Frameworks */,
-				41F27D236E4CF6AB1767C459 /* Pods_Badewaschel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,18 +92,8 @@
 		433F794D97BA0278536C574C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CB0ACF41FE8DFB763ADF3D60 /* Pods-Badewaschel.debug.xcconfig */,
-				A738547C13E933E555FEAED6 /* Pods-Badewaschel.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		7AD2C6F4C29402E1662045F0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B43175DA85130652A4A19805 /* Pods_Badewaschel.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E12DBD5024A60528009BC4C7 = {
@@ -117,7 +102,6 @@
 				E12DBD5B24A60528009BC4C7 /* Badewaschel */,
 				E12DBD5A24A60528009BC4C7 /* Products */,
 				433F794D97BA0278536C574C /* Pods */,
-				7AD2C6F4C29402E1662045F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,11 +231,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E12DBD7024A6052A009BC4C7 /* Build configuration list for PBXNativeTarget "Badewaschel" */;
 			buildPhases = (
-				DA55944B0461B8DB80B4CDF0 /* [CP] Check Pods Manifest.lock */,
 				E12DBD5524A60528009BC4C7 /* Sources */,
 				E12DBD5624A60528009BC4C7 /* Frameworks */,
 				E12DBD5724A60528009BC4C7 /* Resources */,
-				E6A85D1E0DE1CAE8A0C1D4E0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -314,48 +296,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		DA55944B0461B8DB80B4CDF0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Badewaschel-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E6A85D1E0DE1CAE8A0C1D4E0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Badewaschel/Pods-Badewaschel-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Badewaschel/Pods-Badewaschel-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Badewaschel/Pods-Badewaschel-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E12DBD5524A60528009BC4C7 /* Sources */ = {
@@ -527,7 +467,6 @@
 		};
 		E12DBD7124A6052A009BC4C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB0ACF41FE8DFB763ADF3D60 /* Pods-Badewaschel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Badewaschel/Badewaschel.entitlements;
@@ -553,7 +492,6 @@
 		};
 		E12DBD7224A6052A009BC4C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A738547C13E933E555FEAED6 /* Pods-Badewaschel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Badewaschel/Badewaschel.entitlements;
