@@ -43,16 +43,21 @@ struct PoolDetailView: View {
                         .frame(height: 32.0)
                     }
                 }
-            }.navigationBarTitle(pool?.properties.name ?? "Pool Name")
-            
-            .navigationBarItems(trailing: Button(action: {
-                if let actualPool = self.pool {
-                    self.model.setFavorite(id: actualPool.id)
-                    self.isFavorite.toggle()
+            }
+            .navigationBarTitle(pool?.properties.name ?? "Pool Name")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        if let pool = pool {
+                            self.model.setFavorite(id: pool.id)
+                            self.isFavorite.toggle()
+                        }
+                    } label: {
+                        Image(systemName: self.isFavorite ? "heart.fill" : "heart")
+                    }
+
                 }
-            }, label: {
-                return Image(systemName: self.isFavorite ? "heart.fill" : "heart").font(.title)
-            }))
+            }
     }
     
     func createMapsUrl() -> String {

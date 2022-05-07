@@ -45,18 +45,21 @@ struct SpotDetailView: View {
             Section(header: Text("Letzte Aktualisierung")) {
                 Text(getDate(originalDate: spot?.properties.untersuchungsdatum ?? "") ?? "Keine Information")
             }
-        }.navigationBarTitle(Text(spot?.properties.name ?? "Kein Name"))
-            .navigationBarItems(trailing: Button(action: {
-                if let actualSpot = self.spot {
-                    self.model.setFavorite(id: actualSpot.id)
-                    self.isFavorite.toggle()
+        }
+        .navigationBarTitle(Text(spot?.properties.name ?? "Kein Name"))
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    if let spot = self.spot {
+                        self.model.setFavorite(id: spot.id)
+                        self.isFavorite.toggle()
+                    }
+                } label: {
+                    Image(systemName: self.isFavorite ? "heart.fill" : "heart")
                 }
-                else {
-                    print("Could not access Spot")
-                }
-            }) {
-                return Image(systemName: self.isFavorite ? "heart.fill" : "heart").font(.title)
-            })
+            }
+               
+        }
         .onAppear {
             if getDaysSinceLastMeasurement() > 30.0 {
                 displayWarning = true

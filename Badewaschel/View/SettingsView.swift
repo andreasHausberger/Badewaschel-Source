@@ -34,21 +34,7 @@ struct SettingsView: View {
         self.poolModel.getFavorites()
     }
     var body: some View {
-        VStack {
-            HStack {
-                Text("Einstellungen")
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-                Spacer()
-                Button("Speichern") {
-                    self.poolModel.sortPools(sorting: self.options.poolSorting)
-                    self.spotModel.sortSpots(sorting: self.options.spotSorting)
-                    self.dataManager.setUserOptions(options: self.options)
-                    self.presentationMode.wrappedValue.dismiss()
-                }
-            }
-            .padding(.top, 15.0)
-            .padding(.horizontal, 10.0)
+        NavigationView {
             Form {
                 Section(header: Text("Sortierung der Schwimmbäder")) {
                     Picker("Nach", selection: $options.poolSorting) {
@@ -112,9 +98,30 @@ struct SettingsView: View {
                     }
                 }
             }
-            .onAppear {
-                self.options =  self.dataManager.getUserOptions()
+            .navigationTitle(Text("Einstellungen"))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        self.presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Fertig")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        self.poolModel.sortPools(sorting: self.options.poolSorting)
+                        self.spotModel.sortSpots(sorting: self.options.spotSorting)
+                        self.dataManager.setUserOptions(options: self.options)
+                        self.presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Speichern")
+                    }
+                }
             }
+        }
+        .onAppear {
+            self.options =  self.dataManager.getUserOptions()
+            
         }
     }
 }

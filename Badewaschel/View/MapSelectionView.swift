@@ -18,22 +18,37 @@ struct MapSelectionView: View {
     @State var presentingAnnotation: CustomAnnotation? = nil
     @State var region: MKCoordinateRegion = MKCoordinateRegion(center: Constants.Map.center, latitudinalMeters: Constants.Map.latMeters, longitudinalMeters: Constants.Map.lonMeters)
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        VStack {
-            Picker("Picker", selection: $selection) {
-                ForEach(MapSelection.allCases, id: \.self) { selection in
-                    Text(selection.rawValue)
-                }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            
-            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, annotationItems: annotations, annotationContent: { (item: CustomAnnotation) in
-                MapAnnotation(coordinate: item.coordinate) {
-                    PinView(item: item) { item in
-                        self.presentingAnnotation = item
+        NavigationView {
+            VStack {
+                Picker("Picker", selection: $selection) {
+                    ForEach(MapSelection.allCases, id: \.self) { selection in
+                        Text(selection.rawValue)
                     }
                 }
-            })
+                .pickerStyle(SegmentedPickerStyle())
+                
+                Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, annotationItems: annotations, annotationContent: { (item: CustomAnnotation) in
+                    MapAnnotation(coordinate: item.coordinate) {
+                        PinView(item: item) { item in
+                            self.presentingAnnotation = item
+                        }
+                    }
+                })
+            }
+            .navigationTitle(Text("Kartenübersicht"))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        self.presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Fertig")
+                    }
+
+                }
+            }
         }
         .onAppear {
             self.loadAnnotations(for: .Pools)

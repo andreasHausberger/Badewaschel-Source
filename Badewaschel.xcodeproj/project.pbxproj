@@ -27,7 +27,6 @@
 		E1CB869A264EA4A2005436E6 /* MapSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CB8699264EA4A2005436E6 /* MapSelectionView.swift */; };
 		E1CB86A4264EB44B005436E6 /* Color+getColorForCapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CB86A3264EB44B005436E6 /* Color+getColorForCapacity.swift */; };
 		E1CDA52E264D1F1E003B2351 /* Date+dateFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA52D264D1F1E003B2351 /* Date+dateFromString.swift */; };
-		E1CDA536264D293E003B2351 /* StoragePublisher in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDA535264D293E003B2351 /* StoragePublisher */; };
 		E1E4D50424C988D5001BB063 /* SpotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50324C988D5001BB063 /* SpotResponse.swift */; };
 		E1E4D50724C98A85001BB063 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50624C98A85001BB063 /* Constants.swift */; };
 		E1E4D50924C98B86001BB063 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E4D50824C98B86001BB063 /* Response.swift */; };
@@ -85,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1CDA536264D293E003B2351 /* StoragePublisher in Frameworks */,
 				E18F23BB264EEB720010EC96 /* Flyweight in Frameworks */,
 				41F27D236E4CF6AB1767C459 /* Pods_Badewaschel.framework in Frameworks */,
 			);
@@ -258,7 +256,6 @@
 			);
 			name = Badewaschel;
 			packageProductDependencies = (
-				E1CDA535264D293E003B2351 /* StoragePublisher */,
 				E18F23BA264EEB720010EC96 /* Flyweight */,
 			);
 			productName = Badewaschel;
@@ -291,7 +288,6 @@
 			);
 			mainGroup = E12DBD5024A60528009BC4C7;
 			packageReferences = (
-				E1CDA534264D293E003B2351 /* XCRemoteSwiftPackageReference "StoragePublisher" */,
 				E18F23B9264EEB720010EC96 /* XCRemoteSwiftPackageReference "Flyweight" */,
 			);
 			productRefGroup = E12DBD5A24A60528009BC4C7 /* Products */;
@@ -459,7 +455,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -515,7 +511,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -537,7 +533,7 @@
 				DEVELOPMENT_TEAM = ZR2MYEGU5H;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Badewaschel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -563,7 +559,7 @@
 				DEVELOPMENT_TEAM = ZR2MYEGU5H;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Badewaschel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -609,14 +605,6 @@
 				minimumVersion = 1.0.2;
 			};
 		};
-		E1CDA534264D293E003B2351 /* XCRemoteSwiftPackageReference "StoragePublisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "file:///Users/andreas/Developer/iOS/StoragePublisher/";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.3;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -624,11 +612,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E18F23B9264EEB720010EC96 /* XCRemoteSwiftPackageReference "Flyweight" */;
 			productName = Flyweight;
-		};
-		E1CDA535264D293E003B2351 /* StoragePublisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E1CDA534264D293E003B2351 /* XCRemoteSwiftPackageReference "StoragePublisher" */;
-			productName = StoragePublisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 
