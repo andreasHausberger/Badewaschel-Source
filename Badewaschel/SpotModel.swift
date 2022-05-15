@@ -20,12 +20,19 @@ class SpotModel: ObservableObject {
     private let locationManager = LocationManager()
     
     @Published var spots = [Spot]()
+    @Published var federalStates = [FederalState]()
     @Published var favorites = [String]()
     @Published var options: UserOptions?
     
     init() {
         DispatchQueue.main.async {
              self.networkManager.getAllSpots(completion: self.getSpotData(_:))
+        }
+        Task {
+            let federalSpotResponse = await self.getFederalSpotData()
+            DispatchQueue.main.async {
+                self.federalStates = federalSpotResponse?.states ?? []
+            }
         }
     }
     
@@ -34,6 +41,10 @@ class SpotModel: ObservableObject {
         DispatchQueue.main.async {
             self.spots = response.features
         }
+    }
+    
+    func getFederalSpotData() async -> FederalSpotResponse? {
+        return await self.networkManager.getFederalSpots()
     }
     
     func loadSpots() {

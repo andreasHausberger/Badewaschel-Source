@@ -10,7 +10,6 @@ import SwiftUI
 import MapKit
 
 struct BadewaschelMainView: View {
-    
     enum ActiveSheet: String, Identifiable {
         var id: String {
             return self.rawValue
