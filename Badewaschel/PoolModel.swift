@@ -21,6 +21,9 @@ class PoolModel: ObservableObject {
     
     @Published var pools = [Pool]()
     @Published var lastUpdate = ""
+    @Published var showError: Bool = true
+    @Published var favorites = [String]()
+    @Published var options: UserOptions?
     
     public var location: CLLocation? {
         self.locationManager.userLocation
@@ -29,10 +32,6 @@ class PoolModel: ObservableObject {
     public var locationIsAvailable: Bool {
         self.locationManager.locationIsAvailable
     }
-    
-    @Published var favorites = [String]()
-    
-    @Published var options: UserOptions?
     
     init() {
         self.loadPoolData()
@@ -54,19 +53,20 @@ class PoolModel: ObservableObject {
     ///Updates this model's pools. Uses Combine
     public func loadPoolData() {
         self.getPoolPublisher()?
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished: break
                 case .failure(let error):
+                    self.showError = true
                     print("error: \(error)")
                 }
             }, receiveValue: { pools in
-                DispatchQueue.main.async {
-                    self.pools = pools
-                    self.getOptions()
-                    self.sorting = self.options?.poolSorting ?? .Name
-                    self.sortPools(sorting: self.sorting)
-                }
+                self.showError = false
+                self.pools = pools
+                self.getOptions()
+                self.sorting = self.options?.poolSorting ?? .Name
+                self.sortPools(sorting: self.sorting)
             })
             .store(in: &subs)
     }

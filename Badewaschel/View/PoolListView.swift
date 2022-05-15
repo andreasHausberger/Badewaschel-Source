@@ -12,28 +12,34 @@ struct PoolListView: View {
     @ObservedObject var viewModel: PoolModel
     @State var showingRefresh: Bool
     var body: some View {
-        List(viewModel.pools, id: \.id) { pool in
-            NavigationLink(destination:
-                            PoolDetailView(pool: pool,
-                                           model: self.viewModel,
-                                           isFavorite: self.viewModel.isFavorite(id: pool.id)
-                            )
-            )
-            {
-                PoolRow(pool: pool,
-                        isFavorite: self.viewModel.isFavorite(id: pool.id),
-                        shouldDisplayCapacityLabel: self.viewModel.options?.shouldDisplayCapacityLabel
+        if viewModel.showError {
+            Text("Es ist ein Fehler aufgetreten. Es kann sein, dass die Bäderinformationen im Moment nicht verfügbar sind. Bitte versuchen Sie es später nocheinmal.")
+                .asErrorView()
+        } else {
+            List(viewModel.pools, id: \.id) { pool in
+                NavigationLink(destination:
+                                PoolDetailView(pool: pool,
+                                               model: self.viewModel,
+                                               isFavorite: self.viewModel.isFavorite(id: pool.id)
+                                )
                 )
+                {
+                    PoolRow(pool: pool,
+                            isFavorite: self.viewModel.isFavorite(id: pool.id),
+                            shouldDisplayCapacityLabel: self.viewModel.options?.shouldDisplayCapacityLabel
+                    )
+                }
+            }
+            .refreshable {
+                self.viewModel.manuallyRefreshObjects {
+                    self.showingRefresh = false
+                }
+            }
+            .onAppear {
+                self.viewModel.loadPoolData()
             }
         }
-        .refreshable {
-            self.viewModel.manuallyRefreshObjects {
-                self.showingRefresh = false
-            }
-        }
-        .onAppear {
-            self.viewModel.loadPoolData()
-        }
+        
     }
 }
 

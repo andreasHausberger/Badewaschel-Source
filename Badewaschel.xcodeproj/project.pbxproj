@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E106233C2831528A00E9AB60 /* ErrorViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E106233B2831528A00E9AB60 /* ErrorViewModifier.swift */; };
 		E1187A4B24A79E860081BB28 /* PoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1187A4A24A79E860081BB28 /* PoolModel.swift */; };
 		E11E59D524A8CEF4003C0719 /* PoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */; };
 		E11E59D724A8FF3D003C0719 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E59D624A8FF3D003C0719 /* MapView.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E106233B2831528A00E9AB60 /* ErrorViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModifier.swift; sourceTree = "<group>"; };
 		E1187A4A24A79E860081BB28 /* PoolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolModel.swift; sourceTree = "<group>"; };
 		E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolDetailView.swift; sourceTree = "<group>"; };
 		E11E59D624A8FF3D003C0719 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -96,6 +98,14 @@
 			children = (
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E106233A2831527200E9AB60 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				E106233B2831528A00E9AB60 /* ErrorViewModifier.swift */,
+			);
+			name = Modifier;
 			sourceTree = "<group>";
 		};
 		E12DBD5024A60528009BC4C7 = {
@@ -188,6 +198,7 @@
 		E1F1B5AC24AF1BD200438918 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E106233A2831527200E9AB60 /* Modifier */,
 				E1B50E57263DC6D200F2ADB2 /* Main */,
 				E1B50E56263DC6C700F2ADB2 /* Pool */,
 				E1B50E55263DC69700F2ADB2 /* Spot */,
@@ -316,6 +327,7 @@
 				E15E384D28269C4300F08F1B /* FederalSpotResponse.swift in Sources */,
 				E1E4D51524C9B3EC001BB063 /* PoolListView.swift in Sources */,
 				E1E4D50924C98B86001BB063 /* Response.swift in Sources */,
+				E106233C2831528A00E9AB60 /* ErrorViewModifier.swift in Sources */,
 				E12DBD5D24A60528009BC4C7 /* AppDelegate.swift in Sources */,
 				E12DBD5F24A60528009BC4C7 /* SceneDelegate.swift in Sources */,
 				E1F1B5A924ADCA2900438918 /* LocationManager.swift in Sources */,

@@ -48,5 +48,8 @@ extension View {
           }
           return nil
       }
-
+    
+    func asErrorView() -> some View {
+        modifier(ErrorView())
+    }
 }
