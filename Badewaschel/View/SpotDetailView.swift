@@ -95,15 +95,6 @@ struct SpotDetailView: View {
         let mapsLink = "http://maps.apple.com?daddr=\(latitude),\(longitude)"
         return mapsLink
     }
-//
-//    func getDaysSinceLastMeasurement() -> Double {
-//        if let date = Date.dateFromString(dateString: spot?.properties.untersuchungsdatum ?? "", formatString: "yyyy-MM-ddZ") {
-//            let distanceToNowInSeconds = date.distance(to: Date())
-//            let distanceInDays = distanceToNowInSeconds / 3600 / 24
-//            return floor(distanceInDays)
-//        }
-//        return 0
-//    }
 }
 
 struct MeasurementRow: View {

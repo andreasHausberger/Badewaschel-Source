@@ -30,7 +30,8 @@ class SpotModel: ObservableObject {
     
     init() {
         DispatchQueue.main.async {
-             self.networkManager.getAllSpots(completion: self.getSpotData(_:))
+            self.networkManager.getAllSpots(completion: self.getSpotData(_:))
+            self.loadFavorites()
         }
         Task {
             let federalSpotResponse = await self.getFederalSpotData()
@@ -104,7 +105,6 @@ class SpotModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.getOptions()
                         self.spots = response.features
-                        self.favorites = self.getFavorites().compactMap { $0.id }
                         self.sortSpots(sorting: self.options?.spotSorting ?? Sorting.Name)
                     }
                 })
@@ -138,10 +138,8 @@ class SpotModel: ObservableObject {
     
     //MARK: Favorites
     
-    public func getFavorites() -> [Spot] {
-        let favoriteIds = self.dataManager.getFavoriteIDs()
-        let filteredSpots = self.spots.filter( { favoriteIds.contains($0.id) })
-        return filteredSpots
+    public func loadFavorites() {
+        self.favorites = self.dataManager.getFavoriteIDs()
     }
     
     public func setFavorite(id: String) {

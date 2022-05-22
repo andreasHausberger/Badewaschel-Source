@@ -20,7 +20,13 @@ struct SpotListView: View {
             ForEach(spotModel.federalStates, id: \.self) { state in
                 Section(state.stateName) {
                     ForEach(state.spots, id: \.self) { spot in
-                        SpotRow(spot: spot, isFavorite: false, model: spotModel)
+                        let isFavorite = spotModel.isFavorite(id: spot.badegewaesserid)
+                        HStack {
+                            if isFavorite {
+                                Text("❤️")
+                            }
+                            SpotRow(spot: spot, isFavorite: isFavorite, model: spotModel)
+                        }
                     }
                 }
             }
