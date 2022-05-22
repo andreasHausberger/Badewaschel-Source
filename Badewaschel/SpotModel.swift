@@ -24,7 +24,9 @@ class SpotModel: ObservableObject {
     @Published var allStates = [FederalState]()
     @Published var favorites = [String]()
     @Published var options: UserOptions?
+    
     @Published var currentFilter: String?
+    @Published var currentSearchText: String = ""
     
     init() {
         DispatchQueue.main.async {
@@ -48,6 +50,23 @@ class SpotModel: ObservableObject {
                 }
             }
             .store(in: &subs)
+        
+        $currentSearchText
+            .receive(on: DispatchQueue.main)
+            .sink { text in
+                self.federalStates = self.allStates
+                if !text.isEmpty {
+                    self.federalStates = self.federalStates
+                        .map { state in
+                            let filteredSpots = state.spots.filter { $0.badegewaessername.containsIgnoringCase(text) || $0.plzOrt.containsIgnoringCase(text) }
+                            return FederalState(stateName: state.stateName, spots: filteredSpots)
+                        }
+                        .filter { !$0.spots.isEmpty }
+                } else {
+                    self.applyStateFilter(stateName: self.currentFilter)
+                }
+            }
+            .store(in: &subs)
     }
     
     //MARK: Data
@@ -57,7 +76,17 @@ class SpotModel: ObservableObject {
         }
     }
     
-    func getFederalSpotData() async -> FederalSpotResponse? {
+    func reloadFederalSpotData() {
+        Task {
+            let response = await self.getFederalSpotData()
+            DispatchQueue.main.async {
+                self.allStates = response?.states ?? []
+                self.federalStates = response?.states ?? []
+            }
+        }
+    }
+    
+    private func getFederalSpotData() async -> FederalSpotResponse? {
         return await self.networkManager.getFederalSpots()
     }
     

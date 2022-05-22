@@ -9,12 +9,12 @@
 import SwiftUI
 import Combine
 struct SpotListView: View {
-    
     var subs: Set<AnyCancellable> = []
     
     @ObservedObject var spotModel: SpotModel
     @State var currentSpots: [Spot] = []
     @State var showingRefresh: Bool
+    
     var body: some View {
         List {
             ForEach(spotModel.federalStates, id: \.self) { state in
@@ -26,12 +26,12 @@ struct SpotListView: View {
             }
         }
         .refreshable {
-            self.spotModel.loadSpots()
+            self.spotModel.reloadFederalSpotData()
             self.showingRefresh.toggle()
         }
+        .searchable(text: $spotModel.currentSearchText, prompt: Text("Name, Ort oder PLZ"))
         .onAppear {
             self.spotModel.updateOptions()
-            self.spotModel.loadSpots()
         }
     }
 }

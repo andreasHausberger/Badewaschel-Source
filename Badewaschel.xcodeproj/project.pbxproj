@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E106233C2831528A00E9AB60 /* ErrorViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E106233B2831528A00E9AB60 /* ErrorViewModifier.swift */; };
 		E106233E283A74DB00E9AB60 /* Double+roundToTwoDecimalPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E106233D283A74DB00E9AB60 /* Double+roundToTwoDecimalPoints.swift */; };
+		E1062340283A862100E9AB60 /* String+containsIgnoringCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E106233F283A862100E9AB60 /* String+containsIgnoringCase.swift */; };
 		E1187A4B24A79E860081BB28 /* PoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1187A4A24A79E860081BB28 /* PoolModel.swift */; };
 		E11E59D524A8CEF4003C0719 /* PoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */; };
 		E11E59D724A8FF3D003C0719 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E59D624A8FF3D003C0719 /* MapView.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		E106233B2831528A00E9AB60 /* ErrorViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModifier.swift; sourceTree = "<group>"; };
 		E106233D283A74DB00E9AB60 /* Double+roundToTwoDecimalPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+roundToTwoDecimalPoints.swift"; sourceTree = "<group>"; };
+		E106233F283A862100E9AB60 /* String+containsIgnoringCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+containsIgnoringCase.swift"; sourceTree = "<group>"; };
 		E1187A4A24A79E860081BB28 /* PoolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolModel.swift; sourceTree = "<group>"; };
 		E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolDetailView.swift; sourceTree = "<group>"; };
 		E11E59D624A8FF3D003C0719 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				E1CDA52D264D1F1E003B2351 /* Date+dateFromString.swift */,
 				E1CB86A3264EB44B005436E6 /* Color+getColorForCapacity.swift */,
 				E106233D283A74DB00E9AB60 /* Double+roundToTwoDecimalPoints.swift */,
+				E106233F283A862100E9AB60 /* String+containsIgnoringCase.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				E12DBD5F24A60528009BC4C7 /* SceneDelegate.swift in Sources */,
 				E1F1B5A924ADCA2900438918 /* LocationManager.swift in Sources */,
 				E12DBD7424A6053F009BC4C7 /* NetworkManager.swift in Sources */,
+				E1062340283A862100E9AB60 /* String+containsIgnoringCase.swift in Sources */,
 				E12A6D3A24B20F8700651D5E /* CustomAnnotation.swift in Sources */,
 				E1CB86A4264EB44B005436E6 /* Color+getColorForCapacity.swift in Sources */,
 				E1CB869A264EA4A2005436E6 /* MapSelectionView.swift in Sources */,
