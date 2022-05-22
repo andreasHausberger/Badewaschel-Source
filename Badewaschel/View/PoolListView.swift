@@ -35,6 +35,7 @@ struct PoolListView: View {
                     self.showingRefresh = false
                 }
             }
+            .searchable(text: $viewModel.searchText)
             .onAppear {
                 self.viewModel.loadPoolData()
             }

@@ -19,11 +19,13 @@ class PoolModel: ObservableObject {
     private var locationManager = LocationManager()
     private var dataManager = DataManager()
     
+    var allPools = [Pool]()
     @Published var pools = [Pool]()
     @Published var lastUpdate = ""
     @Published var showError: Bool = false
     @Published var favorites = [String]()
     @Published var options: UserOptions?
+    @Published var searchText: String = ""
     
     public var location: CLLocation? {
         self.locationManager.userLocation
@@ -37,6 +39,17 @@ class PoolModel: ObservableObject {
         self.loadPoolData()
         self.favorites = self.dataManager.getFavoriteIDs()
         self.options = self.dataManager.getUserOptions()
+        
+        $searchText
+            .receive(on: DispatchQueue.main)
+            .sink { text in
+                self.pools = self.allPools
+                if !text.isEmpty {
+                    self.pools = self.pools.filter { $0.properties.name.containsIgnoringCase(text) }
+                }
+                self.sortPools(sorting: self.sorting)
+            }
+            .store(in: &subs)
     }
     
     /**
@@ -63,6 +76,7 @@ class PoolModel: ObservableObject {
                 }
             }, receiveValue: { pools in
                 self.showError = false
+                self.allPools = pools
                 self.pools = pools
                 self.getOptions()
                 self.sorting = self.options?.poolSorting ?? .Name
@@ -104,9 +118,10 @@ class PoolModel: ObservableObject {
         return nil
     }
     
-    
+    // MARK: - Sorting
     
     public func sortPools(sorting: Sorting) {
+        self.sorting = sorting
         switch sorting {
         case .Favorites:
             self.pools.sort(by: { self.sortPoolsByFavorites(pool1: $0, pool2: $1) })
@@ -182,7 +197,7 @@ class PoolModel: ObservableObject {
         return self.favorites.contains(id)
     }
     
-    //MARK: Options
+    //MARK: - Options
     
     public func getOptions() {
         self.options = self.dataManager.getUserOptions()

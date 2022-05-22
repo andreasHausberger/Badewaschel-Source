@@ -27,7 +27,7 @@ struct FederalState: Codable, Hashable {
     }
     
     let stateName: String
-    let spots: [FederalSpot]
+    var spots: [FederalSpot]
 
     enum CodingKeys: String, CodingKey {
         case stateName = "BUNDESLAND"
@@ -100,6 +100,12 @@ struct FederalSpot: Codable, Hashable {
     var validEmail: String? {
         if self.email == "0" { return nil }
         return self.email
+    }
+    
+    func getLatLon() -> (lat: Double, lon: Double) {
+        let latitude = Double(self.latitude) ?? 0.0
+        let longitude = Double(self.longitude) ?? 0.0
+        return (lat: latitude, lon: longitude)
     }
 }
 

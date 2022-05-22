@@ -161,39 +161,48 @@ class SpotModel: ObservableObject {
     //MARK: Sorting
     
     public func sortSpots(sorting: Sorting) {
+        self.sorting = sorting
         switch sorting {
         case .Name:
-            self.spots.sort(by: {
-                $0.properties.name < $1.properties.name
-            })
+            self.federalStates = self.federalStates
+                .sorted {
+                    $0.stateName < $1.stateName
+                }
+                .map { state in
+                    FederalState(stateName: state.stateName, spots: state.spots.sorted { $0.badegewaessername < $1.badegewaessername } )
+                }
             print("Name Sort")
         case .Vicinity:
-            self.spots.sort(by: {
-                self.sortSpotsByVicinity(spot1: $0, spot2: $1)
-            })
+            self.federalStates = self.federalStates
+                .map { state in
+                    FederalState(stateName: state.stateName, spots: state.spots.sorted(by: sortSpotsByVicinity(spot1:spot2:)))
+                }
         case .Favorites:
-            self.spots.sort(by: {
-                self.sortSpotsByFavorites(spot1: $0, spot2: $1)
-            })
+            self.federalStates = self.federalStates
+                .map { state in
+                    FederalState(stateName: state.stateName, spots: state.spots.sorted(by: sortSpotsByFavorites(spot1:spot2:)))
+                }
         default:
             print("default")
         }
     }
     
-    private func sortSpotsByFavorites(spot1: Spot, spot2: Spot) -> Bool {
-        let spot1isFavorite = self.favorites.contains(spot1.id)
-        let spot2isFavorite = self.favorites.contains(spot2.id)
+    private func sortSpotsByFavorites(spot1: FederalSpot, spot2: FederalSpot) -> Bool {
+        let spot1isFavorite = self.favorites.contains(spot1.badegewaesserid)
+        let spot2isFavorite = self.favorites.contains(spot2.badegewaesserid)
         
         if spot1isFavorite && !spot2isFavorite { return true }
         if !spot1isFavorite && spot2isFavorite { return false }
         
-        return spot1.properties.name < spot2.properties.name
+        return spot1.badegewaessername < spot2.badegewaessername
     }
     
-    private func sortSpotsByVicinity(spot1: Spot, spot2: Spot) -> Bool {
+    private func sortSpotsByVicinity(spot1: FederalSpot, spot2: FederalSpot) -> Bool {
         if let userLocation = locationManager.userLocation {
-            let location1 = CLLocation(latitude: spot1.geometry.coordinates[1], longitude: spot1.geometry.coordinates[0])
-            let location2 = CLLocation(latitude: spot2.geometry.coordinates[1], longitude: spot2.geometry.coordinates[0])
+            let latLon1 = spot1.getLatLon()
+            let latLon2 = spot2.getLatLon()
+            let location1 = CLLocation(latitude: latLon1.lat, longitude: latLon1.lon)
+            let location2 = CLLocation(latitude: latLon2.lat, longitude: latLon2.lon)
             
             let distance1 = userLocation.distance(from: location1)
             let distance2 = userLocation.distance(from: location2)
