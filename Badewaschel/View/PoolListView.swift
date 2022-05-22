@@ -49,27 +49,22 @@ struct PoolRow: View {
     var isFavorite: Bool?
     var shouldDisplayCapacityLabel: Bool?
     var body: some View {
-        HStack {
-            VStack {
-                HStack {
-                    Text(pool.properties.name).multilineTextAlignment(.leading).lineLimit(1)
-                    if self.isFavorite != nil && self.isFavorite! {
-                        Text("❤️")
-                    }
-                    Spacer()
-                }
-                if (self.shouldDisplayCapacityLabel != nil && self.shouldDisplayCapacityLabel!) {
-                    HStack {
-                        Text(pool.properties.auslastungAmpelKatTxt0 ?? "")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }
+        HStack(alignment: .center) {
+            if self.isFavorite ?? false {
+                Text("❤️")
+            }
+            VStack(alignment: .leading) {
+                Text(pool.properties.name)
+                if self.shouldDisplayCapacityLabel ?? false,
+                   let capText = pool.properties.auslastungAmpelKatTxt0,
+                   !capText.isEmpty {
+                    Text(capText)
+                        .font(.footnote)
                 }
             }
             Spacer()
             AuslastungsAmpel(auslastungInt: pool.properties.auslastungAmpelKategorie0)
-                .frame(width: 32, height: 32, alignment: .trailing)
+                .frame(width: 28, height: 28, alignment: .trailing)
         }
         .accessibility(label: Text("\(pool.properties.name). Aktuelle Auslastung: \(pool.properties.auslastungAmpelKatTxt0 ?? "Keine Information")"))
     }
