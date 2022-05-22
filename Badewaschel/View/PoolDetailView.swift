@@ -101,14 +101,14 @@ struct AuslastungsView: View {
 
 struct InfoView: View {
     var name: String
-    var content: String
+    var content: String?
     
     var body: some View {
         HStack {
             Text(name)
                 .font(.headline)
             Spacer()
-            Text(content)
+            Text(content ?? "Keine Informationen")
         }
     }
 }

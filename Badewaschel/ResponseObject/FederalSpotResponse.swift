@@ -27,7 +27,7 @@ struct FederalState: Codable, Hashable {
     }
     
     let stateName: String
-    let spots: [Badegewaesser]
+    let spots: [FederalSpot]
 
     enum CodingKeys: String, CodingKey {
         case stateName = "BUNDESLAND"
@@ -36,8 +36,8 @@ struct FederalState: Codable, Hashable {
 }
 
 // MARK: - Badegewaesser
-struct Badegewaesser: Codable, Hashable {
-    static func == (lhs: Badegewaesser, rhs: Badegewaesser) -> Bool {
+struct FederalSpot: Codable, Hashable {
+    static func == (lhs: FederalSpot, rhs: FederalSpot) -> Bool {
         lhs.badegewaesserid == rhs.badegewaesserid
     }
     
@@ -57,7 +57,7 @@ struct Badegewaesser: Codable, Hashable {
     let qualitaet2021: String
     let wasserqualitaetJahrVorVoriges, qualitaet2020, wasserqualitaetJahrVorVorVoriges, qualitaet2019: Qualitaet2018
     let qualitaet2018: Qualitaet2018
-    let messwerte: [Messwerte]
+    let messwerte: [QualityMeasurement]
 
     enum CodingKeys: String, CodingKey {
         case badegewaesserid = "BADEGEWAESSERID"
@@ -88,6 +88,19 @@ struct Badegewaesser: Codable, Hashable {
         case qualitaet2018 = "QUALITAET_2018"
         case messwerte = "MESSWERTE"
     }
+    
+    var isOpen: Bool {
+        self.tgesperrt == "0"
+    }
+    
+    var isOpenText: String {
+        self.isOpen ? "Ja, offen" : "Nein, gesperrt"
+    }
+    
+    var validEmail: String? {
+        if self.email == "0" { return nil }
+        return self.email
+    }
 }
 
 enum Einheit: String, Codable {
@@ -95,19 +108,34 @@ enum Einheit: String, Codable {
 }
 
 // MARK: - Messwerte
-struct Messwerte: Codable {
-    let d: String
-    let e, eC: Int
-    let w, s: Double
-    let a: Int
+struct QualityMeasurement: Codable, Hashable {
+    let date: String
+    let enterokokken, eColi: Int
+    let waterTemperature, sightLevel: Double
+    let quality: Int
 
     enum CodingKeys: String, CodingKey {
-        case d = "D"
-        case e = "E"
-        case eC = "E_C"
-        case w = "W"
-        case s = "S"
-        case a = "A"
+        case date = "D"
+        case enterokokken = "E"
+        case eColi = "E_C"
+        case waterTemperature = "W"
+        case sightLevel = "S"
+        case quality = "A"
+    }
+    
+    var qualityLabel: String {
+        switch self.quality {
+        case 1:
+            return "Ausgezeichnete Badegewässerqualität"
+        case 2:
+            return "Gute Badegewässerqualität"
+        case 3:
+            return "Mangelhafte Badegewässerqualität"
+        case 4:
+            return "Baden verboten / vom Baden wird abgeraten"
+        default:
+            return "Keine Informationen"
+        }
     }
 }
 

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SpotDetailView: View {
-    var spot: Spot?
+    var spot: FederalSpot?
     var model: SpotModel
     @State var isFavorite: Bool
     @State var displayWarning: Bool = false
@@ -21,20 +21,37 @@ struct SpotDetailView: View {
                         .foregroundColor(.red)
                 }
             }
-            Section(header: Text("Informationen"), footer: Text("* Messung pro 100 ml")) {
+            Section(header: Text("Informationen")) {
                 List {
-                    InfoView(name: "Name", content: spot?.properties.name ?? "Kein Name")
-                    InfoView(name: "Bezirk", content: spot?.properties.bezirk.description ?? "Keine Information")
-                    InfoView(name: "Wassertemperatur", content: spot?.properties.wassertemperatur?.description ?? "0 °C")
-                    InfoView(name: "Sichttiefe", content: "\(spot?.properties.sichttiefe ?? 0) m")
-                    InfoView(name: "Anzahl E.Coli *", content: spot?.properties.anzEcoli.description ?? "0")
-                    InfoView(name: "Anzahl Enterokokken *", content: spot?.properties.anzEnterokokken.description ?? "0")
+                    InfoView(name: "Name", content: spot?.badegewaessername ?? "Kein Name")
+                    InfoView(name: "Adresse", content: spot?.strasseNummer)
+                    InfoView(name: "Ort", content: spot?.plzOrt)
+                    InfoView(name: "Geöffnet", content: spot?.isOpenText)
+                }
+            }
+            
+            Section(header: Text("Kontakt")) {
+                List {
+                    InfoView(name: "E-Mail", content: spot?.validEmail)
+                        .onTapGesture {
+                            if let email = spot?.validEmail {
+                                let mailToLink = "mailto:\(email)"
+                                self.openLink(link: mailToLink)
+                            }
+                        }
+                    InfoView(name: "Telefon", content: spot?.telefon)
+                        .onTapGesture {
+                            if let phoneNumber = spot?.telefon {
+                                let telLink = "tel:\(phoneNumber)"
+                                self.openLink(link: telLink)
+                            }
+                        }
                 }
             }
             
             Section(header: Text("Karte")) {
                 List {
-                    MapView(latitude: spot?.geometry.coordinates[1] ?? 0.0, longitude: spot?.geometry.coordinates[0] ?? 0.0, name: spot?.properties.name ?? "Kein Name")
+                    MapView(latitude: getLatLon().lat, longitude: getLatLon().lon, name: spot?.badegewaessername ?? "Kein Name")
                         .frame(height: 300)
                     Button("Route anzeigen") {
                         let mapsUrl = self.createMapsUrl()
@@ -42,45 +59,74 @@ struct SpotDetailView: View {
                     }
                 }
             }
-            Section(header: Text("Letzte Aktualisierung")) {
-                Text(getDate(originalDate: spot?.properties.untersuchungsdatum ?? "") ?? "Keine Information")
+            
+            Section {
+                ForEach(spot?.messwerte ?? [], id: \.self) { data in
+                    MeasurementRow(measurement: data)
+                }
+            } header: {
+                Text("Messungen der Wasserqualität")
             }
         }
-        .navigationBarTitle(Text(spot?.properties.name ?? "Kein Name"))
+        .navigationBarTitle(Text(spot?.badegewaessername ?? "Kein Name"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     if let spot = self.spot {
-                        self.model.setFavorite(id: spot.id)
+                        self.model.setFavorite(id: spot.badegewaesserid)
                         self.isFavorite.toggle()
                     }
                 } label: {
                     Image(systemName: self.isFavorite ? "heart.fill" : "heart")
                 }
             }
-               
-        }
-        .onAppear {
-            if getDaysSinceLastMeasurement() > 30.0 {
-                displayWarning = true
-            }
         }
     }
     
+    func getLatLon() -> (lat: Double, lon: Double) {
+        let latitude = Double(self.spot?.latitude ?? "") ?? 0.0
+        let longitude = Double(self.spot?.longitude ?? "") ?? 0.0
+        return (lat: latitude, lon: longitude)
+    }
+    
+
     func createMapsUrl() -> String {
-        let latitude = spot?.geometry.coordinates[1] ?? 0.0
-        let longitude = spot?.geometry.coordinates[0] ?? 0.0
+        let (latitude, longitude) = getLatLon()
         let mapsLink = "http://maps.apple.com?daddr=\(latitude),\(longitude)"
         return mapsLink
     }
+//
+//    func getDaysSinceLastMeasurement() -> Double {
+//        if let date = Date.dateFromString(dateString: spot?.properties.untersuchungsdatum ?? "", formatString: "yyyy-MM-ddZ") {
+//            let distanceToNowInSeconds = date.distance(to: Date())
+//            let distanceInDays = distanceToNowInSeconds / 3600 / 24
+//            return floor(distanceInDays)
+//        }
+//        return 0
+//    }
+}
+
+struct MeasurementRow: View {
+    var measurement: QualityMeasurement
     
-    func getDaysSinceLastMeasurement() -> Double {
-        if let date = Date.dateFromString(dateString: spot?.properties.untersuchungsdatum ?? "", formatString: "yyyy-MM-ddZ") {
-            let distanceToNowInSeconds = date.distance(to: Date())
-            let distanceInDays = distanceToNowInSeconds / 3600 / 24
-            return floor(distanceInDays)
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack(alignment: .top) {
+                Text(measurement.date)
+                    .fontWeight(.bold)
+                Spacer()
+                VStack (alignment: .trailing) {
+                    Text("Wassertemperatur: \(measurement.waterTemperature.roundToTwoDecimalPoints()) °C")
+                    Text("Enterokokken: \(measurement.enterokokken) KBE/100ml")
+                    Text("E. Coli: \(measurement.eColi) KBE/100ml")
+                    Text("Sichttiefe: \(measurement.sightLevel.roundToTwoDecimalPoints()) m")
+                }
+                .font(.footnote)
+            }
+            Text("Bewertung: \(measurement.qualityLabel)")
+                .font(.footnote)
         }
-        return 0
+        .padding(.vertical, 10)
     }
 }
 
