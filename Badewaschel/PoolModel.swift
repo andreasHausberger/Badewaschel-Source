@@ -21,7 +21,7 @@ class PoolModel: ObservableObject {
     
     @Published var pools = [Pool]()
     @Published var lastUpdate = ""
-    @Published var showError: Bool = true
+    @Published var showError: Bool = false
     @Published var favorites = [String]()
     @Published var options: UserOptions?
     

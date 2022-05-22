@@ -21,8 +21,10 @@ class SpotModel: ObservableObject {
     
     @Published var spots = [Spot]()
     @Published var federalStates = [FederalState]()
+    @Published var allStates = [FederalState]()
     @Published var favorites = [String]()
     @Published var options: UserOptions?
+    @Published var currentFilter: String?
     
     init() {
         DispatchQueue.main.async {
@@ -32,8 +34,20 @@ class SpotModel: ObservableObject {
             let federalSpotResponse = await self.getFederalSpotData()
             DispatchQueue.main.async {
                 self.federalStates = federalSpotResponse?.states ?? []
+                self.allStates = federalSpotResponse?.states ?? []
             }
         }
+        
+        $currentFilter
+            .receive(on: DispatchQueue.main)
+            .sink { filter in
+                self.federalStates = self.allStates
+                if let filter = filter,
+                   !filter.isEmpty {
+                    self.federalStates = self.federalStates.filter { $0.stateName == filter }
+                }
+            }
+            .store(in: &subs)
     }
     
     //MARK: Data
@@ -87,7 +101,9 @@ class SpotModel: ObservableObject {
     }
     
     func manuallyRefreshSpots(completion: @escaping () -> ()) {
-        self.loadSpots()
+        Task {
+            await self.getFederalSpotData()
+        }
         completion()
     }
     
@@ -157,6 +173,14 @@ class SpotModel: ObservableObject {
         }
         return false
     }
+    
+    // MARK: - Filter
+    
+    public func applyStateFilter(stateName: String?) {
+        self.currentFilter = stateName
+    }
+    
+    // MARK: - Options
     
     public func getOptions() {
         self.options = self.dataManager.getUserOptions()

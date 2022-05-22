@@ -33,11 +33,21 @@ struct QuickMenuView: View {
                 }
             }
             Menu("Anzeige") {
-                MenuButton(labelText: "Schwimmbäder", imageName: "") {
-                    self.listShown = .Pools
+                Section {
+                    MenuButton(labelText: "Schwimmbäder Wien", imageName: "") {
+                        self.listShown = .Pools
+                    }
                 }
-                MenuButton(labelText: "Badestellen", imageName: "") {
+               
+                MenuButton(labelText: "Alle Badestellen", imageName: "") {
                     self.listShown = .Spots
+                    self.spotModel.applyStateFilter(stateName: nil)
+                }
+                ForEach(spotModel.allStates, id: \.self) { state in
+                    MenuButton(labelText: "Badestellen (\(state.stateName))", imageName: "") {
+                        self.listShown = .Spots
+                        self.spotModel.applyStateFilter(stateName: state.stateName)
+                    }
                 }
             }
         } label: {
