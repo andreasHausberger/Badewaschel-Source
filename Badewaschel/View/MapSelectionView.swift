@@ -27,8 +27,6 @@ struct MapSelectionView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 
-                Text("Display \(viewModel.currentAnnotations.count) Spots")
-                
                 Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, annotationItems: $viewModel.currentAnnotations.wrappedValue, annotationContent: { (item: CustomAnnotation) in
                     MapAnnotation(coordinate: item.location) {
                         PinView(item: item) { item in
