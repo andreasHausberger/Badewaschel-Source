@@ -21,7 +21,7 @@ struct PoolListView: View {
                                 PoolDetailView(pool: pool,
                                                model: self.viewModel,
                                                isFavorite: self.viewModel.isFavorite(id: pool.id)
-                                )
+                                              )
                 )
                 {
                     PoolRow(pool: pool,

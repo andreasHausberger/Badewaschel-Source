@@ -71,14 +71,14 @@ struct SpotDetailView: View {
         .navigationBarTitle(Text(spot?.badegewaessername ?? "Kein Name"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    if let spot = self.spot {
-                        self.model.setFavorite(id: spot.badegewaesserid)
-                        self.isFavorite.toggle()
+                Image(systemName: self.isFavorite ? "heart.fill" : "heart")
+                    .foregroundColor(.blue)
+                    .onTapGesture {
+                        if let spot = spot {
+                            self.model.setFavorite(id: spot.badegewaesserid)
+                            self.isFavorite.toggle()
+                        }
                     }
-                } label: {
-                    Image(systemName: self.isFavorite ? "heart.fill" : "heart")
-                }
             }
         }
     }

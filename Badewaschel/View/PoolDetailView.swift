@@ -46,16 +46,15 @@ struct PoolDetailView: View {
             }
             .navigationBarTitle(pool?.properties.name ?? "Pool Name")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        if let pool = pool {
-                            self.model.setFavorite(id: pool.id)
-                            self.isFavorite.toggle()
+                ToolbarItem {
+                    Image(systemName: self.isFavorite ? "heart.fill" : "heart")
+                        .foregroundColor(.blue)
+                        .onTapGesture {
+                            if let pool = pool {
+                                self.model.setFavorite(id: pool.id)
+                                self.isFavorite.toggle()
+                            }
                         }
-                    } label: {
-                        Image(systemName: self.isFavorite ? "heart.fill" : "heart")
-                    }
-
                 }
             }
     }
