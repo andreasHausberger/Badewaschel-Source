@@ -10,6 +10,7 @@
 		E106233C2831528A00E9AB60 /* ErrorViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E106233B2831528A00E9AB60 /* ErrorViewModifier.swift */; };
 		E106233E283A74DB00E9AB60 /* Double+roundToTwoDecimalPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E106233D283A74DB00E9AB60 /* Double+roundToTwoDecimalPoints.swift */; };
 		E1062340283A862100E9AB60 /* String+containsIgnoringCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E106233F283A862100E9AB60 /* String+containsIgnoringCase.swift */; };
+		E1062342283FABFB00E9AB60 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1062341283FABFB00E9AB60 /* MapViewModel.swift */; };
 		E1187A4B24A79E860081BB28 /* PoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1187A4A24A79E860081BB28 /* PoolModel.swift */; };
 		E11E59D524A8CEF4003C0719 /* PoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */; };
 		E11E59D724A8FF3D003C0719 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E59D624A8FF3D003C0719 /* MapView.swift */; };
@@ -48,6 +49,7 @@
 		E106233B2831528A00E9AB60 /* ErrorViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModifier.swift; sourceTree = "<group>"; };
 		E106233D283A74DB00E9AB60 /* Double+roundToTwoDecimalPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+roundToTwoDecimalPoints.swift"; sourceTree = "<group>"; };
 		E106233F283A862100E9AB60 /* String+containsIgnoringCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+containsIgnoringCase.swift"; sourceTree = "<group>"; };
+		E1062341283FABFB00E9AB60 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		E1187A4A24A79E860081BB28 /* PoolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolModel.swift; sourceTree = "<group>"; };
 		E11E59D424A8CEF4003C0719 /* PoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolDetailView.swift; sourceTree = "<group>"; };
 		E11E59D624A8FF3D003C0719 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				E12DBD7324A6053F009BC4C7 /* NetworkManager.swift */,
 				E1F1B5A824ADCA2900438918 /* LocationManager.swift */,
 				E1F1B5AA24ADDB3400438918 /* DataManager.swift */,
+				E1062341283FABFB00E9AB60 /* MapViewModel.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				E12DBD6424A60528009BC4C7 /* BadewaschelMainView.swift in Sources */,
 				E124AB5A24A912AD0099C9F9 /* SettingsView.swift in Sources */,
 				E12A6D3C24B211F700651D5E /* UIColorExtension.swift in Sources */,
+				E1062342283FABFB00E9AB60 /* MapViewModel.swift in Sources */,
 				E1187A4B24A79E860081BB28 /* PoolModel.swift in Sources */,
 				E12DBD6224A60528009BC4C7 /* Badewaschel.xcdatamodeld in Sources */,
 				E106233E283A74DB00E9AB60 /* Double+roundToTwoDecimalPoints.swift in Sources */,

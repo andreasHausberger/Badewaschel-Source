@@ -85,26 +85,6 @@ class PoolModel: ObservableObject {
             .store(in: &subs)
     }
     
-//    func getPoolData(_ response:PoolResponse) {
-//        DispatchQueue.main.async {
-//            self.pools = response.features
-//            if self.options != nil {
-//                self.sortPools(sorting: self.options!.poolSorting)
-//            }
-//            else {
-//                self.sortPools(sorting: .Name)
-//            }
-//            let lastUpdateStrings = self.pools.map( { $0.properties.timestampModifiedFormat })
-//
-//            for string in lastUpdateStrings {
-//                if let actualString = string {
-//                    self.lastUpdate = actualString
-//                    return
-//                }
-//            }
-//        }
-//    }
-    
     func getPoolPublisher() -> AnyPublisher<[Pool], APIError>? {
         do {
             let publisher: AnyPublisher<PoolResponse, APIError> = try Network.get(urlString: Constants.poolURL)
