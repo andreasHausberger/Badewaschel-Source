@@ -17,9 +17,6 @@ struct PoolDetailView: View {
                 Section(header: Text("Auslastung")) {
                     List {
                         AuslastungsView(auslastungsInt: pool?.properties.auslastungAmpelKategorie0 ?? 0, auslastungsText: pool?.properties.auslastungAmpelKatTxt0 ?? "Keine Informationen", auslastungsDate: pool?.properties.auslastungTag0 ?? "")
-                        AuslastungsView(auslastungsInt: pool?.properties.auslastungAmpelKategorie1 ?? 0, auslastungsText: pool?.properties.auslastungAmpelKatTxt1 ?? "Keine Informationen", auslastungsDate: pool?.properties.auslastungTag1 ?? "")
-                        AuslastungsView(auslastungsInt: pool?.properties.auslastungAmpelKategorie2 ?? 0, auslastungsText: pool?.properties.auslastungAmpelKatTxt2 ?? "Keine Informationen", auslastungsDate: pool?.properties.auslastungTag2 ?? "")
-                        AuslastungsView(auslastungsInt: pool?.properties.auslastungAmpelKategorie3 ?? 0, auslastungsText: pool?.properties.auslastungAmpelKatTxt3 ?? "Keine Informationen", auslastungsDate: pool?.properties.auslastungTag3 ?? "")
                     }
                 }
                 Section(header: Text("Informationen")) {
