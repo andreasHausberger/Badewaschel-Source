@@ -51,9 +51,9 @@ struct FederalSpot: Codable, Hashable {
     let longitude, latitude, ansprechstelle, strasseNummer: String
     let plzOrt, telefon, email, tgesperrt: String
     let enterokokkenEinheit, eColiEinheit: Einheit
-    let wassertemperaturEinheit: WassertemperaturEinheit
-    let sichttiefeEinheit: SichttiefeEinheit
-    let sperrgrund, wasserqualitaetJahrHeuer, qualitaet2022, wasserqualitaetJahrVoriges: String
+    let wassertemperaturEinheit: String?
+    let sichttiefeEinheit: String?
+    let sperrgrund, wasserqualitaetJahrHeuer, qualitaet2022, wasserqualitaetJahrVoriges: String?
     let qualitaet2021: String
     let wasserqualitaetJahrVorVoriges, qualitaet2020, wasserqualitaetJahrVorVorVoriges, qualitaet2019: Qualitaet2018
     let qualitaet2018: Qualitaet2018

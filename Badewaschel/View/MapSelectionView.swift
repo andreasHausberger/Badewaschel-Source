@@ -29,9 +29,12 @@ struct MapSelectionView: View {
                 
                 Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, annotationItems: $viewModel.currentAnnotations.wrappedValue, annotationContent: { (item: CustomAnnotation) in
                     MapAnnotation(coordinate: item.location) {
-                        PinView(item: item) { item in
-                            self.presentingAnnotation = item
-                        }
+                        PinView(item: item, displayTitle: .constant(self.presentingAnnotation == item))
+                            .onTapGesture {
+                                withAnimation {
+                                    self.presentingAnnotation = item
+                                }
+                            }
                     }
                 })
             }
@@ -82,8 +85,7 @@ struct MapSelectionView: View {
 
 struct PinView: View {
     var item: CustomAnnotation
-    @State public var displayTitle: Bool = false
-    public let presentAnnotation: (CustomAnnotation) -> ()
+    @Binding public var displayTitle: Bool
     var body: some View {
         ZStack {
             if (displayTitle) {
@@ -91,7 +93,7 @@ struct PinView: View {
                     RoundedRectangle(cornerRadius: 4)
                         .foregroundColor(.white)
                     Text(item.pool?.properties.name ?? item.spot?.badegewaessername ?? "")
-                        .font(.system(size: 10))
+                        .font(.footnote)
                         .padding(1)
                 }
                 .frame(width: 90, height: 60, alignment: .top)
@@ -104,14 +106,6 @@ struct PinView: View {
                     .frame(width: 15, height: 40, alignment: .center)
             }
             .foregroundColor(item.getColor())
-            
-        }
-//        .frame(width: 80, height: 80)
-        .onTapGesture {
-            withAnimation {
-                self.displayTitle.toggle()
-                self.presentAnnotation(item)
-            }
         }
     }
 }

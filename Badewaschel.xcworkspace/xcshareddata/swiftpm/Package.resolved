@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "flyweight",
+      "kind" : "localSourceControl",
+      "location" : "/Users/andreas/Developer/iOS/Flyweight",
+      "state" : {
+        "revision" : "69b1ebead13af4c065be204d44897fabbbfe4a71",
+        "version" : "1.0.2"
+      }
+    }
+  ],
+  "version" : 2
+}
