@@ -54,9 +54,7 @@ struct FederalSpot: Codable, Hashable {
     let wassertemperaturEinheit: String?
     let sichttiefeEinheit: String?
     let sperrgrund, wasserqualitaetJahrHeuer, qualitaet2022, wasserqualitaetJahrVoriges: String?
-    let qualitaet2021: String
-    let wasserqualitaetJahrVorVoriges, qualitaet2020, wasserqualitaetJahrVorVorVoriges, qualitaet2019: Qualitaet2018
-    let qualitaet2018: Qualitaet2018
+    let qualitaet2021, wasserqualitaetJahrVorVoriges, qualitaet2020, wasserqualitaetJahrVorVorVoriges, qualitaet2019, qualitaet2018: WaterQuality?
     let messwerte: [QualityMeasurement]
 
     enum CodingKeys: String, CodingKey {
@@ -145,9 +143,10 @@ struct QualityMeasurement: Codable, Hashable {
     }
 }
 
-enum Qualitaet2018: String, Codable {
+enum WaterQuality: String, Codable {
     case a = "A"
     case b = "B"
+    case c = "C"
     case empty = ""
     case g = "G"
 }

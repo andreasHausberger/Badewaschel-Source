@@ -17,17 +17,12 @@ struct PoolListView: View {
                 .asErrorView()
         } else {
             List(viewModel.pools, id: \.id) { pool in
-                NavigationLink(destination:
-                                PoolDetailView(pool: pool,
-                                               model: self.viewModel,
-                                               isFavorite: self.viewModel.isFavorite(id: pool.id)
-                                              )
-                )
-                {
+                NavigationLink {
+                    PoolDetailView(pool: pool, model: self.viewModel, isFavorite: self.viewModel.isFavorite(id: pool.id))
+                } label: {
                     PoolRow(pool: pool,
                             isFavorite: self.viewModel.isFavorite(id: pool.id),
-                            shouldDisplayCapacityLabel: self.viewModel.options?.shouldDisplayCapacityLabel
-                    )
+                            shouldDisplayCapacityLabel: self.viewModel.options?.shouldDisplayCapacityLabel)
                 }
             }
             .refreshable {
